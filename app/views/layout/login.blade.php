@@ -27,17 +27,17 @@
 		
 		<div class="container">
 			
-			<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+			<!-- <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
-			</a>
+			</a> -->
 			
-			<a class="brand" href="index.html">
+			<a class="brand" href="{{URL::action('HomeController@home')}}">
 				Charity App			
 			</a>		
 			
-			<div class="nav-collapse">
+<!-- 			<div class="nav-collapse">
 				<ul class="nav pull-right">
 					
 					<li class="">						
@@ -56,7 +56,7 @@
 					</li>
 				</ul>
 				
-			</div><!--/.nav-collapse -->	
+			</div> --><!--/.nav-collapse -->	
 	
 		</div> <!-- /container -->
 		
@@ -112,9 +112,9 @@
 
 
 
-<div class="login-extra">
+<!-- <div class="login-extra">
 	<a href="#">Reset Password</a>
-</div> <!-- /login-extra -->
+</div> --> <!-- /login-extra -->
 
 
 <script src="{{asset('assets/js/jquery-1.7.2.min.js')}}"></script>

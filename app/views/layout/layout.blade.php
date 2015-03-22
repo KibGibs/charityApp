@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>Dashboard - Bootstrap Admin Template</title>
+<title>Charity</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <link href="{{asset('assets/css/bootstrap.min.css')}}" rel="stylesheet">
@@ -21,21 +21,14 @@
 <div class="navbar navbar-fixed-top">
   <div class="navbar-inner">
     <div class="container"> <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span
-                    class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span> </a><a class="brand" href="index.html">Bootstrap Admin Template </a>
+                    class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span> </a>
+                    <a class="brand" href="{{URL::action('HomeController@home')}}">Admin Page </a>
       <div class="nav-collapse">
         <ul class="nav pull-right">
           <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i
-                            class="icon-cog"></i> Account <b class="caret"></b></a>
+                            class="icon-cog"></i> Settings <b class="caret"></b></a>
             <ul class="dropdown-menu">
-              <li><a href="javascript:;">Settings</a></li>
-              <li><a href="javascript:;">Help</a></li>
-            </ul>
-          </li>
-          <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i
-                            class="icon-user"></i> EGrappler.com <b class="caret"></b></a>
-            <ul class="dropdown-menu">
-              <li><a href="javascript:;">Profile</a></li>
-              <li><a href="javascript:;">Logout</a></li>
+              <li><a href="{{URL::action('HomeController@logout')}}">Logout</a></li>
             </ul>
           </li>
         </ul>
@@ -54,8 +47,17 @@
   <div class="subnavbar-inner">
     <div class="container">
       <ul class="mainnav">
-        <li class="active"><a href="{{URL::action('HomeController@home')}}"><i class="icon-dashboard"></i><span>Dashboard</span> </a> </li>
-        <li><a href="reports.html"><i class="icon-list-alt"></i><span>Reports</span> </a> </li>
+        <li {{ Request::segment(1) == '' ? 'class="active"' : '' }}>
+          <a href="{{URL::action('HomeController@home')}}">
+            <i class="icon-dashboard"></i><span>Dashboard</span> 
+          </a> 
+        </li>
+         <li {{ Request::segment(1) == 'users' ? 'class="active"' : '' }}>
+          <a href="{{URL::action('HomeController@users')}}">
+            <i class="icon-user"></i><span>Users</span> 
+          </a> 
+        </li>
+<!--         <li><a href="reports.html"><i class="icon-list-alt"></i><span>Reports</span> </a> </li>
         <li><a href="guidely.html"><i class="icon-facetime-video"></i><span>App Tour</span> </a></li>
         <li><a href="charts.html"><i class="icon-bar-chart"></i><span>Charts</span> </a> </li>
         <li><a href="shortcodes.html"><i class="icon-code"></i><span>Shortcodes</span> </a> </li>
@@ -68,7 +70,7 @@
             <li><a href="signup.html">Signup</a></li>
             <li><a href="error.html">404</a></li>
           </ul>
-        </li>
+        </li> -->
       </ul>
     </div>
     <!-- /container --> 
@@ -80,23 +82,11 @@
   @yield('content')
 </div>
 <!-- /main -->
-<div class="extra">
-  <div class="extra-inner">
-    <div class="container">
-      <div class="row">
-       </div>
-      <!-- /row --> 
-    </div>
-    <!-- /container --> 
-  </div>
-  <!-- /extra-inner --> 
-</div>
-<!-- /extra -->
 <div class="footer">
   <div class="footer-inner">
     <div class="container">
       <div class="row">
-        <div class="span12"> &copy; 2013 <a href="http://www.egrappler.com/">Bootstrap Responsive Admin Template</a>. </div>
+        <div class="span12"> &copy; 2015 Charity. </div>
         <!-- /span12 --> 
       </div>
       <!-- /row --> 

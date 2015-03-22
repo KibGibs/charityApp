@@ -14,18 +14,10 @@ class HomeController extends BaseController {
 	|	Route::get('/', 'HomeController@showWelcome');
 	|
 	*/
-
-	public function showWelcome()
-	{
-		return View::make('hello');
-	}
-
 	public function home(){
+
 		if(Auth::check()){
-			$data = array(
-				'users' => User::where('status', 0)->get(),
-			);
-			return View::make('users',$data);
+			return View::make('dashboard');
 		}
 		else{
 			return Redirect::action('HomeController@login')->with('error','You need to login first!');
@@ -33,12 +25,31 @@ class HomeController extends BaseController {
 		
 	}
 
+	public function users(){
+		//'users' => User::where('status', 0)->get(),
+		if(Auth::check()){
+			$data = array(
+				'users' => User::get(),
+			);
+			return View::make('users',$data);
+		}
+		else{
+			return Redirect::action('HomeController@login')->with('error','You need to login first!');
+		}
+			
+	}
+
 	public function login(){
 
 		//$user = User::find(1);
 		//dd($user->isAdmin());
 
-		return View::make('layout.login');
+		if(Auth::check()){
+			return Redirect::action('HomeController@home');
+		}
+		else{
+			return View::make('layout.login');
+		}
 	
 	}
 
