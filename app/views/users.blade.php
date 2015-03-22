@@ -6,6 +6,8 @@
 			{{$v->first_name}}
 		</li>
 	@endforeach
+
+	test
 @endif
 @stop
 
