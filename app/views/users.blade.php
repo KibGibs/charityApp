@@ -7,7 +7,7 @@
 		</li>
 	@endforeach
 
-	test
+	123123
 @endif
 @stop
 
