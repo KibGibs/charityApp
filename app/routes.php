@@ -17,3 +17,4 @@ Route::post('/login/post', 'HomeController@doLogin');
 Route::get('/logout', 'HomeController@logout');
 Route::get('/register', 'HomeController@register');
 Route::get('/users', 'HomeController@users');
+Route::get('/addUser', 'HomeController@addUser');

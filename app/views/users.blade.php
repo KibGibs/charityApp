@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-<button type="submit" class="btn btn-primary">Add user</button><br /><br />
+<a href="{{URL::action('HomeController@addUser')}}"><button type="submit" class="btn btn-primary">Add user</button></a><br /><br />
 	@if(Auth::user()->isADmin())
 		<table class="table table-striped table-bordered">
 			<thead>

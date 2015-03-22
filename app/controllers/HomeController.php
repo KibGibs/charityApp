@@ -36,7 +36,15 @@ class HomeController extends BaseController {
 		else{
 			return Redirect::action('HomeController@login')->with('error','You need to login first!');
 		}
-			
+	}
+
+	public function addUser(){
+		if(Auth::check()){
+			return View::make('add_user');
+		}
+		else{
+			return Redirect::action('HomeController@login')->with('error','You need to login first!');
+		}
 	}
 
 	public function login(){
