@@ -87,7 +87,10 @@ class HomeController extends BaseController {
 
 	public function register(){
 		
-		$validator = Validator::make(
+	
+		if(Auth::check()){
+
+			$validator = Validator::make(
 			    array(
 			        'username' => Input::get('username'),
 			        'password' => Input::get('password'),
@@ -108,7 +111,9 @@ class HomeController extends BaseController {
 
 		if ($validator->fails())
 		{
-		   return $messages = $validator->messages();
+		   return Redirect::action('HomeController@addUser')
+		   ->withErrors($validator->messages())
+		   ->withInput(Input::except('password', 'password_confirm'));
 		}
 		else
 		{
@@ -122,6 +127,11 @@ class HomeController extends BaseController {
 			$user->save(); 
 
 			return Redirect::action('HomeController@users');
+		}
+
+		}
+		else{
+			return View::make('layout.login');
 		}
 	}
 
