@@ -7,8 +7,8 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <link href="{{asset('assets/css/bootstrap.min.css')}}" rel="stylesheet">
 <link href="{{asset('assets/css/bootstrap-responsive.min.css')}}" rel="stylesheet">
-<link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600"
-        rel="stylesheet">
+<!--<link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600"
+        rel="stylesheet">-->
 <link href="{{asset('assets/css/font-awesome.css')}}" rel="stylesheet">
 <link href="{{asset('assets/css/style.css')}}" rel="stylesheet">
 <link href="{{asset('assets/css/pages/dashboard.css')}}" rel="stylesheet">
@@ -52,9 +52,14 @@
             <i class="icon-dashboard"></i><span>Dashboard</span> 
           </a> 
         </li>
-         <li class="@if(Request::is('users*')){{'active'}}@endif">
+        <li class="@if(Request::is('users*')){{'active'}}@endif">
           <a href="{{URL::action('HomeController@users')}}">
             <i class="icon-user"></i><span>Users</span> 
+          </a> 
+        </li>
+		 <li class="@if(Request::is('program*')){{'active'}}@endif">
+          <a href="{{URL::action('ProgramController@getIndex')}}">
+            <i class="icon-calendar"></i><span>Program</span> 
           </a> 
         </li>
 <!--         <li><a href="reports.html"><i class="icon-list-alt"></i><span>Reports</span> </a> </li>

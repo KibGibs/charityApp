@@ -15,10 +15,11 @@ Route::get('/', 'HomeController@home');
 Route::get('/login', 'HomeController@login');
 Route::post('/login/post', 'HomeController@doLogin');
 Route::get('/logout', 'HomeController@logout');
-Route::get('/register', 'HomeController@register');
 
 /* Users */
 Route::get('/users', 'HomeController@users');
 Route::get('/users/add', 'HomeController@addUser');
-Route::post('/users/register', 'HomeController@register');
+Route::post('/users/register/', 'HomeController@register');
 
+/* Program */
+Route::get('/program', 'ProgramController@getIndex');
