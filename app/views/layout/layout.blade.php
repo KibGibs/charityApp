@@ -47,12 +47,12 @@
   <div class="subnavbar-inner">
     <div class="container">
       <ul class="mainnav">
-        <li {{ Request::segment(1) == '' ? 'class="active"' : '' }}>
+        <li class="@if(Request::is('/')){{'active'}}@endif">
           <a href="{{URL::action('HomeController@home')}}">
             <i class="icon-dashboard"></i><span>Dashboard</span> 
           </a> 
         </li>
-         <li {{ Request::segment(1) == 'users' ? 'class="active"' : '' }}>
+         <li class="@if(Request::is('users*')){{'active'}}@endif">
           <a href="{{URL::action('HomeController@users')}}">
             <i class="icon-user"></i><span>Users</span> 
           </a> 
