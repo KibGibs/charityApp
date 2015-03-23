@@ -31,5 +31,6 @@ Route::get('/program/detail/add/{program?}', 'ProgramController@addProgramDetail
 
 /* Barangay */
 Route::get('/barangay', 'BarangayController@getIndex');
-Route::get('/barangay/add', 'BarangayController@getIndexAdd');
-Route::post('/barangay/add/post', 'BarangayController@add');
+Route::get('/barangay/add/{barangay?}', 'BarangayController@getIndexAdd');
+Route::post('/barangay/add/post/', 'BarangayController@save');
+Route::get('/barangay/delete/{barangay?}', 'BarangayController@delete');

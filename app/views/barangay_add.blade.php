@@ -16,13 +16,14 @@
 	  				</div> <!-- /widget-header -->
 					
 					<div class="widget-content">
-								{{Form::open(array('action' => 'BarangayController@add','class' => 'form-horizontal'))}}
+								{{Form::open(array('action' => 'BarangayController@save','class' => 'form-horizontal'))}}
 								<!-- <form id="edit-profile" class="form-horizontal"> -->
+									<input type="hidden" value="{{ $id }}" name="id"/>
 									<fieldset>
 										<div class="control-group">											
 											<label class="control-label" for="username">Name</label>
 											<div class="controls">
-												<input type="text" class="span6" name="name" value="" required>
+												<input type="text" class="span6" name="name" value="{{ $name }}" required>
 												<p class="help-block">Barangay name</p>
 											</div> <!-- /controls -->				
 										</div> <!-- /control-group -->
