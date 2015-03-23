@@ -86,44 +86,42 @@ class HomeController extends BaseController {
 	}
 
 	public function register(){
-		// $user = new User;
-		// $user->first_name = 'margibs';
-		// $user->password = Hash::make('123123');
-		// $user->username = 'margibs';
-
-		// $user->save(); 
-
-			// $validator = Validator::make(
-			//    array(
-			//         'username' => 'required|alpha_num|min:3|max:32',
-			//         'email' => 'required|email',
-			//         'password' => 'required|min:3|confirmed',
-			//         'password_confirmation' => 'required|min:3'
-			//     )
-			// );
-
+		
 		$validator = Validator::make(
 			    array(
 			        'username' => Input::get('username'),
 			        'password' => Input::get('password'),
+			        'first_name' => Input::get('first_name'),
+			        'last_name' => Input::get('last_name'),
 			        'password_confirmation' => Input::get('password_confirmation'),
 			        'email' => Input::get('email')
 			    ),
 			    array(
-			        'username' => 'required',
-			        'password' => 'required|min:8|confirmed',
-			        'password_confirmation' => 'required|min:8',
-			        'email' => 'required|email|'
+			        'username' => 'required|unique:users|min:4',
+			        'first_name' => 'required',
+			        'first_name' => 'required',
+			        'password' => 'required|min:6|confirmed',
+			        'password_confirmation' => 'required|min:6',
+			        'email' => 'required|email|unique:users'
 			    )
 		);
 
 		if ($validator->fails())
 		{
-		    echo 'something wong';
+		   return $messages = $validator->messages();
 		}
 		else
 		{
-			echo 'register sila';
+			$user = new User;
+			$user->last_name = Input::get('last_name');
+			$user->first_name = Input::get('first_name');
+			$user->password = Hash::make(Input::get('password'));
+			$user->username = Input::get('username');
+			$user->email = Input::get('email');
+
+			$user->save(); 
+
+			return Redirect::action('HomeController@users');
 		}
 	}
 

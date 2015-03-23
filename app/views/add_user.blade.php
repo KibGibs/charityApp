@@ -22,7 +22,7 @@
 										<div class="control-group">											
 											<label class="control-label" for="username">Username</label>
 											<div class="controls">
-												<input type="text" class="span6" id="username" name="username" value="" required>
+												<input type="text" class="span6" id="username" name="username" value="" required minlength=4>
 												<p class="help-block">Your username is for logging in and cannot be changed.</p>
 											</div> <!-- /controls -->				
 										</div> <!-- /control-group -->
@@ -31,7 +31,7 @@
 										<div class="control-group">											
 											<label class="control-label" for="firstname">First Name</label>
 											<div class="controls">
-												<input type="text" class="span6" id="firstname" value="" required>
+												<input type="text" class="span6" name="first_name" id="firstname" value="" required>
 											</div> <!-- /controls -->				
 										</div> <!-- /control-group -->
 										
@@ -39,7 +39,7 @@
 										<div class="control-group">											
 											<label class="control-label" for="lastname">Last Name</label>
 											<div class="controls">
-												<input type="text" class="span6" id="lastname" value="" required>
+												<input type="text" class="span6" id="lastname" name="last_name" value="" required>
 											</div> <!-- /controls -->				
 										</div> <!-- /control-group -->
 										
@@ -57,7 +57,7 @@
 										<div class="control-group">											
 											<label class="control-label" for="password1">Password</label>
 											<div class="controls">
-												<input type="password" class="span4" id="password1" name="password" value="" required>
+												<input type="password" class="span4" id="password1" name="password" value="" required  minlength=6>
 											</div> <!-- /controls -->				
 										</div> <!-- /control-group -->
 										
@@ -65,7 +65,7 @@
 										<div class="control-group">											
 											<label class="control-label" for="password2">Confirm</label>
 											<div class="controls">
-												<input type="password" class="span4" id="password2" name="password_confirmation" value="" required>
+												<input type="password" class="span4" id="password2" name="password_confirmation" value="" required  minlength=6>
 											</div> <!-- /controls -->				
 										</div> <!-- /control-group -->
 
