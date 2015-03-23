@@ -11,18 +11,35 @@ class BarangayController extends BaseController {
 		return View::make('barangay', $data);
 	}
 	
-	public function getIndexAdd(){
-		return View::make('barangay_add');
+	public function getIndexAdd($id = null){
+		$data = array(
+			'id' => $id,
+			'name' => $id ? Barangay::find($id)->name : '',
+		);
+		return View::make('barangay_add', $data);
 	}
 	
-	public function add() {
+	public function save() {
 		
 		$name = Input::get('name');
+		$id = Input::get('id');
 		
-		$barangay = new Barangay;
+		if($id) {
+			$barangay = Barangay::find($id);
+		}else{
+			$barangay = new Barangay;
+		}
 		$barangay->name = $name;
+		
 		if($barangay->save()) {
-			return Redirect::action('BarangayController@getIndex')->with('success','Barangay Added!');
+			return Redirect::action('BarangayController@getIndex')->with('success','Barangay Saved!');
+		}
+	}
+	
+	public function delete($id) {
+		$barangay = Barangay::find($id);
+		if($barangay->delete()) {
+			return Redirect::action('BarangayController@getIndex')->with('success','Barangay Deleted!');
 		}
 	}
 
