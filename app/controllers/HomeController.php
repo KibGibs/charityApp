@@ -131,10 +131,32 @@ class HomeController extends BaseController {
 
 		}
 		else{
-			return View::make('layout.login');
+			return Redirect::action('HomeController@login');
 		}
 	}
 
+	public function editUser($id){
+		
+		if(Auth::check()){
+			$user = User::find($id);
+			if($user){
+				$data = array('user' => $user);
+				return View::make('edit_user',$data);
+			}
+			else{
+				return Redirect::action('HomeController@login');
+			}
+			
+		}
+		else{
+			return Redirect::action('HomeController@login');
+		}
+
+	}
+
+	public function update($id){
+
+	}
 
 
 }

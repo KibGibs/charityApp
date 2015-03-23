@@ -12,11 +12,11 @@
 	      			
 	      			<div class="widget-header">
 	      				<i class="icon-user"></i>
-	      				<h3>Add User</h3>
+	      				<h3>Edit User</h3>
 	  				</div> <!-- /widget-header -->
 					
 					<div class="widget-content">
-								{{Form::open(array('action' => 'HomeController@register','class' => 'form-horizontal'))}}
+								{{Form::model($user,array('action' => ['HomeController@update', 'id' => $user->id ],'class' => 'form-horizontal'))}}
 
 								@if ($errors->has())
 									<div class="alert alert-danger">
@@ -30,8 +30,8 @@
 										<div class="control-group">											
 											<label class="control-label" for="username">Username</label>
 											<div class="controls">
-												<input type="text" class="span6" id="username" name="username" value="{{ Input::old('username') }}" required minlength=4>
-												<p class="help-block">Your username is for logging in and cannot be changed.</p>
+												{{ Form::text('username',null,array('class' => 'span6','minlength' => 4,'disabled' => 'disabled','required' => 'required'))}}
+										<!-- 		<p class="help-block">Your username is for logging in and cannot be changed.</p> -->
 											</div> <!-- /controls -->				
 										</div> <!-- /control-group -->
 										
@@ -39,7 +39,7 @@
 										<div class="control-group">											
 											<label class="control-label" for="firstname">First Name</label>
 											<div class="controls">
-												<input type="text" class="span6" name="first_name" id="firstname" value="{{ Input::old('first_name') }}" required>
+												{{ Form::text('first_name',null,array('class' => 'span6','minlength' => 4,'required' => 'required'))}}
 											</div> <!-- /controls -->				
 										</div> <!-- /control-group -->
 										

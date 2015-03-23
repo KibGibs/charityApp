@@ -28,9 +28,10 @@
 						</td>
 						<td> {{$v->user_type}} </td>
 						<td class="td-actions">
-							<a href="javascript:;" class="btn btn-small btn-success"><i class="btn-icon-only icon-edit"> </i></a>
+							<a href="{{URL::action('HomeController@editUser', ['id' => $v->id])}}" class="btn btn-small btn-success"><i class="btn-icon-only icon-edit"> </i></a>
 							<a href="javascript:;" class="btn btn-danger btn-small"><i class="btn-icon-only icon-remove"> </i></a>
 						</td>
+
 					</tr>
 				@endforeach
 	
