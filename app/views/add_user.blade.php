@@ -16,12 +16,13 @@
 	  				</div> <!-- /widget-header -->
 					
 					<div class="widget-content">
-								<form id="edit-profile" class="form-horizontal">
+								{{Form::open(array('action' => 'HomeController@register','class' => 'form-horizontal'))}}
+								<!-- <form id="edit-profile" class="form-horizontal"> -->
 									<fieldset>
 										<div class="control-group">											
 											<label class="control-label" for="username">Username</label>
 											<div class="controls">
-												<input type="text" class="span6" id="username" value="" required>
+												<input type="text" class="span6" id="username" name="username" value="" required>
 												<p class="help-block">Your username is for logging in and cannot be changed.</p>
 											</div> <!-- /controls -->				
 										</div> <!-- /control-group -->
@@ -46,7 +47,7 @@
 										<div class="control-group">											
 											<label class="control-label" for="email">Email Address</label>
 											<div class="controls">
-												<input type="email" class="span4" id="email" value="" required>
+												<input type="email" class="span4" id="email" name="email" value="" required>
 											</div> <!-- /controls -->				
 										</div> <!-- /control-group -->
 										
@@ -56,7 +57,7 @@
 										<div class="control-group">											
 											<label class="control-label" for="password1">Password</label>
 											<div class="controls">
-												<input type="password" class="span4" id="password1" value="" required>
+												<input type="password" class="span4" id="password1" name="password" value="" required>
 											</div> <!-- /controls -->				
 										</div> <!-- /control-group -->
 										
@@ -64,7 +65,7 @@
 										<div class="control-group">											
 											<label class="control-label" for="password2">Confirm</label>
 											<div class="controls">
-												<input type="password" class="span4" id="password2" value="" required>
+												<input type="password" class="span4" id="password2" name="password_confirmation" value="" required>
 											</div> <!-- /controls -->				
 										</div> <!-- /control-group -->
 

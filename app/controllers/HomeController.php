@@ -39,7 +39,9 @@ class HomeController extends BaseController {
 	}
 
 	public function addUser(){
+		
 		if(Auth::check()){
+
 			return View::make('add_user');
 		}
 		else{
@@ -90,6 +92,39 @@ class HomeController extends BaseController {
 		// $user->username = 'margibs';
 
 		// $user->save(); 
+
+			// $validator = Validator::make(
+			//    array(
+			//         'username' => 'required|alpha_num|min:3|max:32',
+			//         'email' => 'required|email',
+			//         'password' => 'required|min:3|confirmed',
+			//         'password_confirmation' => 'required|min:3'
+			//     )
+			// );
+
+		$validator = Validator::make(
+			    array(
+			        'username' => Input::get('username'),
+			        'password' => Input::get('password'),
+			        'password_confirmation' => Input::get('password_confirmation'),
+			        'email' => Input::get('email')
+			    ),
+			    array(
+			        'username' => 'required',
+			        'password' => 'required|min:8|confirmed',
+			        'password_confirmation' => 'required|min:8',
+			        'email' => 'required|email|'
+			    )
+		);
+
+		if ($validator->fails())
+		{
+		    echo 'something wong';
+		}
+		else
+		{
+			echo 'register sila';
+		}
 	}
 
 
