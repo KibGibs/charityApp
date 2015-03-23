@@ -47,7 +47,7 @@
 										<div class="control-group">											
 											<label class="control-label" for="lastname">Last Name</label>
 											<div class="controls">
-												<input type="text" class="span6" id="lastname" name="last_name" value="{{ Input::old('last_name') }}" required>
+												{{ Form::text('last_name',null,array('class' => 'span6','minlength' => 4,'required' => 'required'))}}
 											</div> <!-- /controls -->				
 										</div> <!-- /control-group -->
 										
@@ -55,27 +55,27 @@
 										<div class="control-group">											
 											<label class="control-label" for="email">Email Address</label>
 											<div class="controls">
-												<input type="email" class="span4" id="email" name="email" value="{{ Input::old('email') }}" required>
+													{{ Form::email('email',null,array('class' => 'span6','required' => 'required','disabled' => 'disabled'))}}
 											</div> <!-- /controls -->				
 										</div> <!-- /control-group -->
 										
 										
-										<br /><br />
+							<!-- 			<br /><br />
 										
 										<div class="control-group">											
 											<label class="control-label" for="password1">Password</label>
 											<div class="controls">
 												<input type="password" class="span4" id="password1" name="password" value="" required  minlength=6>
-											</div> <!-- /controls -->				
-										</div> <!-- /control-group -->
+											</div> 			
+										</div> 
 										
 										
 										<div class="control-group">											
 											<label class="control-label" for="password2">Confirm</label>
 											<div class="controls">
 												<input type="password" class="span4" id="password2" name="password_confirmation" value="" required  minlength=6>
-											</div> <!-- /controls -->				
-										</div> <!-- /control-group -->
+											</div> 			
+										</div>  -->
 
 										<div class="form-actions">
 											<button type="submit" class="btn btn-primary">Save</button> 

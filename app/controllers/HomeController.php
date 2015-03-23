@@ -102,7 +102,7 @@ class HomeController extends BaseController {
 			    array(
 			        'username' => 'required|unique:users|min:4',
 			        'first_name' => 'required',
-			        'first_name' => 'required',
+			        'last_name' => 'required',
 			        'password' => 'required|min:6|confirmed',
 			        'password_confirmation' => 'required|min:6',
 			        'email' => 'required|email|unique:users'
@@ -126,7 +126,7 @@ class HomeController extends BaseController {
 
 			$user->save(); 
 
-			return Redirect::action('HomeController@users');
+			return Redirect::action('HomeController@users')->with('success','User Added!');
 		}
 
 		}
@@ -155,6 +155,41 @@ class HomeController extends BaseController {
 	}
 
 	public function update($id){
+
+		if(Auth::check()){
+
+			$validator = Validator::make(
+			    array(
+			        'first_name' => Input::get('first_name'),
+			        'last_name' => Input::get('last_name'),
+			        'email' => Input::get('email')
+			    ),
+			    array(
+			        'first_name' => 'required',
+			        'last_name' => 'required',
+			    )
+		);
+
+		if ($validator->fails())
+		{
+		   return Redirect::action('HomeController@editUser', $id)
+		   ->withErrors($validator->messages());
+		}
+		else
+		{
+			$user = User::find($id);
+			$user->last_name = Input::get('last_name');
+			$user->first_name = Input::get('first_name');
+
+			$user->save(); 
+
+			return Redirect::action('HomeController@users')->with('success','User Updated!');
+		}
+
+		}
+		else{
+			return Redirect::action('HomeController@login');
+		}
 
 	}
 
