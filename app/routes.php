@@ -23,3 +23,11 @@ Route::post('/users/register/', 'HomeController@register');
 
 /* Program */
 Route::get('/program', 'ProgramController@getIndex');
+Route::post('/program/add/post', 'ProgramController@saveProgram');
+Route::get('/program/detail/{program?}', 'ProgramController@getProgramDetail');
+Route::get('/program/detail/add/{program?}', 'ProgramController@addProgramDetail');
+
+/* Barangay */
+Route::get('/barangay', 'BarangayController@getIndex');
+Route::get('/barangay/add', 'BarangayController@getIndexAdd');
+Route::post('/barangay/add/post', 'BarangayController@add');

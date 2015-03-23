@@ -62,6 +62,13 @@
             <i class="icon-calendar"></i><span>Program</span> 
           </a> 
         </li>
+		
+		 </li>
+		 <li class="@if(Request::is('barangay*')){{'active'}}@endif">
+          <a href="{{URL::action('BarangayController@getIndex')}}">
+            <i class="icon-globe"></i><span>Barangay</span> 
+          </a> 
+        </li>
 <!--         <li><a href="reports.html"><i class="icon-list-alt"></i><span>Reports</span> </a> </li>
         <li><a href="guidely.html"><i class="icon-facetime-video"></i><span>App Tour</span> </a></li>
         <li><a href="charts.html"><i class="icon-bar-chart"></i><span>Charts</span> </a> </li>
