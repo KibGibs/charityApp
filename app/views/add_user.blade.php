@@ -17,12 +17,20 @@
 					
 					<div class="widget-content">
 								{{Form::open(array('action' => 'HomeController@register','class' => 'form-horizontal'))}}
+
+								@if ($errors->has())
+									<div class="alert alert-danger">
+										@foreach ($errors->all() as $error)
+											{{ $error }}<br>        
+										@endforeach
+									</div>
+								@endif
 								<!-- <form id="edit-profile" class="form-horizontal"> -->
 									<fieldset>
 										<div class="control-group">											
 											<label class="control-label" for="username">Username</label>
 											<div class="controls">
-												<input type="text" class="span6" id="username" name="username" value="" required minlength=4>
+												<input type="text" class="span6" id="username" name="username" value="{{ Input::old('username') }}" required minlength=4>
 												<p class="help-block">Your username is for logging in and cannot be changed.</p>
 											</div> <!-- /controls -->				
 										</div> <!-- /control-group -->
@@ -31,7 +39,7 @@
 										<div class="control-group">											
 											<label class="control-label" for="firstname">First Name</label>
 											<div class="controls">
-												<input type="text" class="span6" name="first_name" id="firstname" value="" required>
+												<input type="text" class="span6" name="first_name" id="firstname" value="{{ Input::old('first_name') }}" required>
 											</div> <!-- /controls -->				
 										</div> <!-- /control-group -->
 										
@@ -39,7 +47,7 @@
 										<div class="control-group">											
 											<label class="control-label" for="lastname">Last Name</label>
 											<div class="controls">
-												<input type="text" class="span6" id="lastname" name="last_name" value="" required>
+												<input type="text" class="span6" id="lastname" name="last_name" value="{{ Input::old('last_name') }}" required>
 											</div> <!-- /controls -->				
 										</div> <!-- /control-group -->
 										
@@ -47,7 +55,7 @@
 										<div class="control-group">											
 											<label class="control-label" for="email">Email Address</label>
 											<div class="controls">
-												<input type="email" class="span4" id="email" name="email" value="" required>
+												<input type="email" class="span4" id="email" name="email" value="{{ Input::old('email') }}" required>
 											</div> <!-- /controls -->				
 										</div> <!-- /control-group -->
 										
