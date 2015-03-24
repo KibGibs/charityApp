@@ -20,6 +20,8 @@ Route::get('/logout', 'HomeController@logout');
 Route::get('/users', 'HomeController@users');
 Route::get('/users/add', 'HomeController@addUser');
 Route::post('/users/register/', 'HomeController@register');
+Route::get('/users/edit/{id}', 'HomeController@editUser');
+Route::post('/users/update/{id}', 'HomeController@update');
 
 /* Program */
 Route::get('/program', 'ProgramController@getIndex');

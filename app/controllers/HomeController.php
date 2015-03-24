@@ -27,7 +27,7 @@ class HomeController extends BaseController {
 
 	public function users(){
 		//'users' => User::where('status', 0)->get(),
-		if(Auth::check()){
+		if(Auth::check() && Auth::user()->isADmin()){
 			$data = array(
 				'users' => User::get(),
 			);
@@ -40,7 +40,7 @@ class HomeController extends BaseController {
 
 	public function addUser(){
 		
-		if(Auth::check()){
+		if(Auth::check() && Auth::user()->isADmin()){
 
 			return View::make('add_user');
 		}
@@ -102,7 +102,7 @@ class HomeController extends BaseController {
 			    array(
 			        'username' => 'required|unique:users|min:4',
 			        'first_name' => 'required',
-			        'first_name' => 'required',
+			        'last_name' => 'required',
 			        'password' => 'required|min:6|confirmed',
 			        'password_confirmation' => 'required|min:6',
 			        'email' => 'required|email|unique:users'
@@ -123,18 +123,77 @@ class HomeController extends BaseController {
 			$user->password = Hash::make(Input::get('password'));
 			$user->username = Input::get('username');
 			$user->email = Input::get('email');
+			$user->user_type = Input::get('user_type');
 
 			$user->save(); 
 
-			return Redirect::action('HomeController@users');
+			return Redirect::action('HomeController@users')->with('success','User Added!');
 		}
 
 		}
 		else{
-			return View::make('layout.login');
+			return Redirect::action('HomeController@login');
 		}
 	}
 
+	public function editUser($id){
+		
+		if(Auth::check() && Auth::user()->isADmin()){
+			$user = User::find($id);
+			if($user){
+				$data = array('user' => $user);
+				return View::make('edit_user',$data);
+			}
+			else{
+				return Redirect::action('HomeController@login');
+			}
+			
+		}
+		else{
+			return Redirect::action('HomeController@login');
+		}
+
+	}
+
+	public function update($id){
+
+		if(Auth::check()){
+
+			$validator = Validator::make(
+			    array(
+			        'first_name' => Input::get('first_name'),
+			        'last_name' => Input::get('last_name'),
+			        'email' => Input::get('email')
+			    ),
+			    array(
+			        'first_name' => 'required',
+			        'last_name' => 'required',
+			    )
+		);
+
+		if ($validator->fails())
+		{
+		   return Redirect::action('HomeController@editUser', $id)
+		   ->withErrors($validator->messages());
+		}
+		else
+		{
+			$user = User::find($id);
+			$user->last_name = Input::get('last_name');
+			$user->first_name = Input::get('first_name');
+			$user->user_type = Input::get('user_type');
+
+			$user->save(); 
+
+			return Redirect::action('HomeController@users')->with('success','User Updated!');
+		}
+
+		}
+		else{
+			return Redirect::action('HomeController@login');
+		}
+
+	}
 
 
 }

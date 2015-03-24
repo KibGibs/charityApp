@@ -12,11 +12,11 @@
 	      			
 	      			<div class="widget-header">
 	      				<i class="icon-user"></i>
-	      				<h3>Add User</h3>
+	      				<h3>Edit User</h3>
 	  				</div> <!-- /widget-header -->
 					
 					<div class="widget-content">
-								{{Form::open(array('action' => 'HomeController@register','class' => 'form-horizontal'))}}
+								{{Form::model($user,array('action' => ['HomeController@update', 'id' => $user->id ],'class' => 'form-horizontal'))}}
 
 								@if ($errors->has())
 									<div class="alert alert-danger">
@@ -30,8 +30,8 @@
 										<div class="control-group">											
 											<label class="control-label" for="username">Username</label>
 											<div class="controls">
-												<input type="text" class="span6" id="username" name="username" value="{{ Input::old('username') }}" required minlength=4>
-												<p class="help-block">Your username is for logging in and cannot be changed.</p>
+												{{ Form::text('username',null,array('class' => 'span6','minlength' => 4,'disabled' => 'disabled','required' => 'required'))}}
+										<!-- 		<p class="help-block">Your username is for logging in and cannot be changed.</p> -->
 											</div> <!-- /controls -->				
 										</div> <!-- /control-group -->
 										
@@ -39,7 +39,7 @@
 										<div class="control-group">											
 											<label class="control-label" for="firstname">First Name</label>
 											<div class="controls">
-												<input type="text" class="span6" name="first_name" id="firstname" value="{{ Input::old('first_name') }}" required>
+												{{ Form::text('first_name',null,array('class' => 'span6','minlength' => 4,'required' => 'required'))}}
 											</div> <!-- /controls -->				
 										</div> <!-- /control-group -->
 										
@@ -47,7 +47,7 @@
 										<div class="control-group">											
 											<label class="control-label" for="lastname">Last Name</label>
 											<div class="controls">
-												<input type="text" class="span6" id="lastname" name="last_name" value="{{ Input::old('last_name') }}" required>
+												{{ Form::text('last_name',null,array('class' => 'span6','minlength' => 4,'required' => 'required'))}}
 											</div> <!-- /controls -->				
 										</div> <!-- /control-group -->
 										
@@ -55,38 +55,34 @@
 										<div class="control-group">											
 											<label class="control-label" for="email">Email Address</label>
 											<div class="controls">
-												<input type="email" class="span4" id="email" name="email" value="{{ Input::old('email') }}" required>
+													{{ Form::email('email',null,array('class' => 'span6','required' => 'required','disabled' => 'disabled'))}}
 											</div> <!-- /controls -->				
 										</div> <!-- /control-group -->
 
 										<div class="control-group">											
 											<label class="control-label" for="user_type">User Type</label>
 											<div class="controls">
-												<!-- <input type="email" class="span4" id="email" name="email" value="{{ Input::old('email') }}" required> -->
-												<select name="user_type" id="">
-													<option value="staff">Staff</option>
-													<option value="admin">Admin</option>
-													<option value="donor">Donor</option>
-												</select>
+													{{ Form::select('user_type', array('staff' => 'Staff', 'admin' => 'Admin','donor' => 'Donor'));}}
 											</div> <!-- /controls -->				
 										</div> <!-- /control-group -->
 										
-										<br /><br />
+										
+							<!-- 			<br /><br />
 										
 										<div class="control-group">											
 											<label class="control-label" for="password1">Password</label>
 											<div class="controls">
 												<input type="password" class="span4" id="password1" name="password" value="" required  minlength=6>
-											</div> <!-- /controls -->				
-										</div> <!-- /control-group -->
+											</div> 			
+										</div> 
 										
 										
 										<div class="control-group">											
 											<label class="control-label" for="password2">Confirm</label>
 											<div class="controls">
 												<input type="password" class="span4" id="password2" name="password_confirmation" value="" required  minlength=6>
-											</div> <!-- /controls -->				
-										</div> <!-- /control-group -->
+											</div> 			
+										</div>  -->
 
 										<div class="form-actions">
 											<button type="submit" class="btn btn-primary">Save</button> 

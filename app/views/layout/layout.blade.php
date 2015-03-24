@@ -52,11 +52,13 @@
             <i class="icon-dashboard"></i><span>Dashboard</span> 
           </a> 
         </li>
+        @if(Auth::user()->isADmin())
         <li class="@if(Request::is('users*')){{'active'}}@endif">
           <a href="{{URL::action('HomeController@users')}}">
             <i class="icon-user"></i><span>Users</span> 
           </a> 
         </li>
+        @endif
 		 <li class="@if(Request::is('program*')){{'active'}}@endif">
           <a href="{{URL::action('ProgramController@getIndex')}}">
             <i class="icon-calendar"></i><span>Program</span> 

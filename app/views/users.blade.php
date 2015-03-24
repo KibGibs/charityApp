@@ -2,8 +2,14 @@
 
 @section('content')
 <div class="container">
+@if(Auth::user()->isADmin())
 <a href="{{URL::action('HomeController@addUser')}}"><button type="submit" class="btn btn-primary">Add user</button></a><br /><br />
-	@if(Auth::user()->isADmin())
+	@if(Session::has('success'))
+	<div class="alert alert-success">
+		{{Session::get('success')}}
+	</div>
+	@endif
+	
 		<table class="table table-striped table-bordered">
 			<thead>
 				<tr>
@@ -28,9 +34,9 @@
 						</td>
 						<td> {{$v->user_type}} </td>
 						<td class="td-actions">
-							<a href="javascript:;" class="btn btn-small btn-success"><i class="btn-icon-only icon-edit"> </i></a>
-							<a href="javascript:;" class="btn btn-danger btn-small"><i class="btn-icon-only icon-remove"> </i></a>
+							<a href="{{URL::action('HomeController@editUser', ['id' => $v->id])}}" class="btn btn-small btn-success"><i class="btn-icon-only icon-edit"> </i></a>
 						</td>
+
 					</tr>
 				@endforeach
 	
