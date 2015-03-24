@@ -58,6 +58,13 @@
 													{{ Form::email('email',null,array('class' => 'span6','required' => 'required','disabled' => 'disabled'))}}
 											</div> <!-- /controls -->				
 										</div> <!-- /control-group -->
+
+										<div class="control-group">											
+											<label class="control-label" for="user_type">User Type</label>
+											<div class="controls">
+													{{ Form::select('user_type', array('staff' => 'Staff', 'admin' => 'Admin','donor' => 'Donor'));}}
+											</div> <!-- /controls -->				
+										</div> <!-- /control-group -->
 										
 										
 							<!-- 			<br /><br />

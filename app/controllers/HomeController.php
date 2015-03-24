@@ -27,7 +27,7 @@ class HomeController extends BaseController {
 
 	public function users(){
 		//'users' => User::where('status', 0)->get(),
-		if(Auth::check()){
+		if(Auth::check() && Auth::user()->isADmin()){
 			$data = array(
 				'users' => User::get(),
 			);
@@ -40,7 +40,7 @@ class HomeController extends BaseController {
 
 	public function addUser(){
 		
-		if(Auth::check()){
+		if(Auth::check() && Auth::user()->isADmin()){
 
 			return View::make('add_user');
 		}
@@ -123,6 +123,7 @@ class HomeController extends BaseController {
 			$user->password = Hash::make(Input::get('password'));
 			$user->username = Input::get('username');
 			$user->email = Input::get('email');
+			$user->user_type = Input::get('user_type');
 
 			$user->save(); 
 
@@ -137,7 +138,7 @@ class HomeController extends BaseController {
 
 	public function editUser($id){
 		
-		if(Auth::check()){
+		if(Auth::check() && Auth::user()->isADmin()){
 			$user = User::find($id);
 			if($user){
 				$data = array('user' => $user);
@@ -180,6 +181,7 @@ class HomeController extends BaseController {
 			$user = User::find($id);
 			$user->last_name = Input::get('last_name');
 			$user->first_name = Input::get('first_name');
+			$user->user_type = Input::get('user_type');
 
 			$user->save(); 
 

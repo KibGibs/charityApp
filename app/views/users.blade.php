@@ -2,13 +2,14 @@
 
 @section('content')
 <div class="container">
+@if(Auth::user()->isADmin())
 <a href="{{URL::action('HomeController@addUser')}}"><button type="submit" class="btn btn-primary">Add user</button></a><br /><br />
 	@if(Session::has('success'))
 	<div class="alert alert-success">
 		{{Session::get('success')}}
 	</div>
 	@endif
-	@if(Auth::user()->isADmin())
+	
 		<table class="table table-striped table-bordered">
 			<thead>
 				<tr>

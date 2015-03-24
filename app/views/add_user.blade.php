@@ -58,7 +58,18 @@
 												<input type="email" class="span4" id="email" name="email" value="{{ Input::old('email') }}" required>
 											</div> <!-- /controls -->				
 										</div> <!-- /control-group -->
-										
+
+										<div class="control-group">											
+											<label class="control-label" for="user_type">User Type</label>
+											<div class="controls">
+												<!-- <input type="email" class="span4" id="email" name="email" value="{{ Input::old('email') }}" required> -->
+												<select name="user_type" id="">
+													<option value="staff">Staff</option>
+													<option value="admin">Admin</option>
+													<option value="donor">Donor</option>
+												</select>
+											</div> <!-- /controls -->				
+										</div> <!-- /control-group -->
 										
 										<br /><br />
 										
