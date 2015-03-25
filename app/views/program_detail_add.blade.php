@@ -30,6 +30,16 @@
 											</div> <!-- /controls -->				
 										</div> <!-- /control-group -->
 										<div class="control-group">											
+											<label class="control-label" for="username">Activity</label>
+											<div class="controls">
+												<select name="barangay" class="span5" id="username">
+													@foreach($activity as $k=>$v)
+													<option value="{{$v->id}}">{{$v->name}}</option>
+													@endforeach
+												</select>
+											</div> <!-- /controls -->				
+										</div> <!-- /control-group -->
+										<div class="control-group">											
 											<label class="control-label" for="firstname">Cost</label>										
 											<div class="controls">
 											   <div class="input-prepend input-append">

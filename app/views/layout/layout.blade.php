@@ -12,6 +12,9 @@
 <link href="{{asset('assets/css/font-awesome.css')}}" rel="stylesheet">
 <link href="{{asset('assets/css/style.css')}}" rel="stylesheet">
 <link href="{{asset('assets/css/pages/dashboard.css')}}" rel="stylesheet">
+
+
+<link href="{{asset('bootstrap/css/bootstrap-theme.min.css')}}" rel="stylesheet">
 <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
 <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -64,11 +67,15 @@
             <i class="icon-calendar"></i><span>Program</span> 
           </a> 
         </li>
-		
-		 </li>
 		 <li class="@if(Request::is('barangay*')){{'active'}}@endif">
           <a href="{{URL::action('BarangayController@getIndex')}}">
             <i class="icon-globe"></i><span>Barangay</span> 
+          </a> 
+        </li> 
+		
+		<li class="@if(Request::is('activity*')){{'active'}}@endif">
+          <a href="{{URL::action('ActivityController@getIndex')}}">
+            <i class="icon-tasks"></i><span>Activity</span> 
           </a> 
         </li>
 <!--         <li><a href="reports.html"><i class="icon-list-alt"></i><span>Reports</span> </a> </li>
@@ -116,10 +123,15 @@
 <script src="{{asset('assets/js/jquery-1.7.2.min.js')}}"></script> 
 <script src="{{asset('assets/js/excanvas.min.js')}}"></script> 
 <script src="{{asset('assets/js/chart.min.js')}}" type="text/javascript"></script> 
-<script src="{{asset('assets/js/bootstrap.js')}}"></script>
+<script src="{{asset('bootstrap/js/bootstrap.min.js')}}"></script>
 @yield('scripts')
 
  
 <script src="{{asset('assets/js/base.js')}}"></script> 
+<script type="text/javascript">
+	$(function () {
+	  $('[data-toggle="tooltip"]').tooltip();
+	})
+</script> 
 </body>
 </html>

@@ -11,6 +11,12 @@ class ProgramController extends BaseController {
 		return View::make('program', $data);
 	}
 	
+	public function programAddIndex($program = null){
+	
+		
+		return View::make('program_add');
+	}
+	
 	public function saveProgram() {
 		$name = Input::get('name');
 		
@@ -35,6 +41,7 @@ class ProgramController extends BaseController {
 		$data = array(
 			'barangay' => Barangay::all(),
 			'program' => Program::find($id),
+			'activity' => Activity::all(),
 		);
 		return View::make('program_detail_add', $data);
 	}

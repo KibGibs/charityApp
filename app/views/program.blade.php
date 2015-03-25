@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
- <a href="#myModal" role="button" class="btn btn-primary" data-toggle="modal">Add Program</a>
+ <a href="{{ URL::action('ProgramController@programAddIndex') }}" class="btn btn-primary">Add Program</a>
 	<br /><br />
 	@if(Session::has('success'))
 	<div class="alert alert-success">
@@ -25,7 +25,7 @@
 						<td class="span2"> {{$v->id}} </td>
 						<td class="span8"> {{$v->name}} </td>
 						<td class="td-actions span2">
-							<a href="{{URL::action('ProgramController@getProgramDetail', ['program' => $v->id])}}" class="btn btn-small btn-info"><i class="btn-icon-only icon-list-alt"> </i></a>
+							<a href="{{URL::action('ProgramController@getProgramDetail', ['program' => $v->id])}}" class="btn btn-small btn-info"><i class="btn-icon-only icon-list-alt" data-toggle="tooltip" data-placement="top" title="Program Details"> </i></a>
 						</td>
 					</tr>
 				@endforeach
