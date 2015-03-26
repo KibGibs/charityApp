@@ -17,7 +17,8 @@ class HomeController extends BaseController {
 	public function home(){
 
 		if(Auth::check()){
-			return View::make('dashboard');
+			$data['post'] = Posting::where('status', '=', 1)->orderBy('id','desc')->get();
+			 return View::make('dashboard',$data);
 		}
 		else{
 			return Redirect::action('HomeController@login')->with('error','You need to login first!');

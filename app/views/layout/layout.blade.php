@@ -21,6 +21,11 @@
 <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
+
+    <style>
+    input[type="text"]{ height : 30px; }
+    </style>
+
 </head>
 <body>
 <div class="navbar navbar-fixed-top">
