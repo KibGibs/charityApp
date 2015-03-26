@@ -45,4 +45,12 @@ class ProgramController extends BaseController {
 		);
 		return View::make('program_detail_add', $data);
 	}
+	
+	public function getSubActivity($id) {
+		$activity_detail = ActivityDetail::where('activity_id', $id)->get();
+		foreach($activity_detail as $k=>$v) {
+			$v->sub_activity_id = SubActivity::find($v->sub_activity_id); 
+		}
+		return $activity_detail;
+	}
 }

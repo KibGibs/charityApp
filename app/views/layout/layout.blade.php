@@ -5,6 +5,7 @@
 <title>Charity</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
+<link href="{{asset('bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
 <link href="{{asset('assets/css/bootstrap.min.css')}}" rel="stylesheet">
 <link href="{{asset('assets/css/bootstrap-responsive.min.css')}}" rel="stylesheet">
 <link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600"
@@ -12,6 +13,7 @@
 <link href="{{asset('assets/css/font-awesome.css')}}" rel="stylesheet">
 <link href="{{asset('assets/css/style.css')}}" rel="stylesheet">
 <link href="{{asset('assets/css/pages/dashboard.css')}}" rel="stylesheet">
+
 
 
 <link href="{{asset('bootstrap/css/bootstrap-theme.min.css')}}" rel="stylesheet">
@@ -129,9 +131,13 @@
 <script src="{{asset('assets/js/excanvas.min.js')}}"></script> 
 <script src="{{asset('assets/js/chart.min.js')}}" type="text/javascript"></script> 
 <script src="{{asset('bootstrap/js/bootstrap.min.js')}}"></script>
+<script src="{{asset('assets/js/angular.min.js')}}"></script>
+<script src="{{asset('assets/js/module/app.js')}}"></script>
+<script src="{{asset('assets/js/ui-bootstrap-tpls-0.12.0.min.js')}}"></script>
+
+
 @yield('scripts')
 
- 
 <script src="{{asset('assets/js/base.js')}}"></script> 
 <script type="text/javascript">
 	$(function () {
