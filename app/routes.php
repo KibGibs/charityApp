@@ -29,6 +29,7 @@ Route::get('/program/add/{program?}', 'ProgramController@programAddIndex');
 Route::post('/program/add/post', 'ProgramController@saveProgram');
 Route::get('/program/detail/{program?}', 'ProgramController@getProgramDetail');
 Route::get('/program/detail/add/{program?}', 'ProgramController@addProgramDetail');
+Route::get('/program/subactivity/get/{program?}', 'ProgramController@getSubActivity');
 
 /* Barangay */
 Route::get('/barangay', 'BarangayController@getIndex');

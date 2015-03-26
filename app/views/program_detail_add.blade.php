@@ -1,9 +1,7 @@
 @extends('layout.layout')
 
 @section('content')
-<div class="container">
-
-	
+<div class="container" data-ng-app="app" data-ng-controller="programCtrl" ng-cloak>
 	      <div class="row">
 	      	
 	      	<div class="span12">      		
@@ -22,31 +20,56 @@
 										<div class="control-group">											
 											<label class="control-label" for="username">Barangay</label>
 											<div class="controls">
-												<select name="barangay" class="span5" id="username">
-													@foreach($barangay as $k=>$v)
-													<option value="{{$v->id}}">{{$v->name}}</option>
-													@endforeach
-												</select>
+													<select class="form-control span5" 
+														ng-model="program.barangay" 
+														ng-options="bg.id as bg.name for bg in barangay" >
+														<option value="">-- Select --</option>																							
+													</select>
+											
 											</div> <!-- /controls -->				
 										</div> <!-- /control-group -->
 										<div class="control-group">											
 											<label class="control-label" for="username">Activity</label>
 											<div class="controls">
-												<select name="barangay" class="span5" id="username">
-													@foreach($activity as $k=>$v)
-													<option value="{{$v->id}}">{{$v->name}}</option>
-													@endforeach
+												<select class="form-control span5" 
+														ng-model="program.activity" 
+														ng-options="ac.id as ac.name for ac in activity" 
+														ng-change="selectedActivity(program.activity)">
+														<option value="">-- Select --</option>
+																						
 												</select>
+											</div> <!-- /controls -->				
+										</div> <!-- /control-group -->
+										<div class="control-group">											
+											<label class="control-label" for="username">Sub Activity</label>
+											<div class="controls">
+												<select class="form-control span5" 
+														ng-model="program.subActivity" 
+														ng-options="sac.sub_activity_id.id as sac.sub_activity_id.name for sac in subActivity" >
+														<option value="">-- Select --</option>
+																							
+												</select>
+											</div> <!-- /controls -->				
+										</div> <!-- /control-group -->
+										<div class="control-group">											
+											<label class="control-label" for="username">Start Date</label>
+											<div class="controls">
+												<datepicker ng-model="dt_start" min-date="minDate_start" show-weeks="true" class="well well-sm" style="width: 400px;"></datepicker>
+												</p>
+											</div> <!-- /controls -->				
+										</div> <!-- /control-group -->
+										<div class="control-group">											
+											<label class="control-label" for="username">End Date</label>
+											<div class="controls">
+												<datepicker ng-model="dt_end" min-date="minDate_end" show-weeks="true" class="well well-sm" style="width: 400px;"></datepicker>
+
 											</div> <!-- /controls -->				
 										</div> <!-- /control-group -->
 										<div class="control-group">											
 											<label class="control-label" for="firstname">Cost</label>										
 											<div class="controls">
-											   <div class="input-prepend input-append">
-												  <span class="add-on">PHP</span>
-												  <input class="span4" id="appendedPrependedInput" type="text">
-												</div>
-											</div>
+												<input class="span6" value="" type="text" style="height: 30px; ">
+											</div> <!-- /controls -->
 										</div>
 
 										<div class="form-actions">
@@ -66,3 +89,15 @@
 </div>
 @stop
 
+@section('scripts')
+	<script type="text/javascript">
+	var vars = {{json_encode(
+		array(
+			'barangay'=>$barangay,
+			'activity'=>$activity,
+			'get_sub_activity_url'=> URL::action('ProgramController@getSubActivity', [':id:']),
+		)
+	)}};
+	</script>
+	{{ HTML::script(asset('assets/js/module/program.js')) }}
+@stop
