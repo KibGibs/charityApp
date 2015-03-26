@@ -78,6 +78,11 @@
             <i class="icon-tasks"></i><span>Activity</span> 
           </a> 
         </li>
+      <li class="@if(Request::is('post*')){{'active'}}@endif">
+          <a href="{{URL::action('PostingController@getIndex')}}">
+            <i class="icon-paste"></i><span>Post</span> 
+          </a> 
+        </li>
 <!--         <li><a href="reports.html"><i class="icon-list-alt"></i><span>Reports</span> </a> </li>
         <li><a href="guidely.html"><i class="icon-facetime-video"></i><span>App Tour</span> </a></li>
         <li><a href="charts.html"><i class="icon-bar-chart"></i><span>Charts</span> </a> </li>

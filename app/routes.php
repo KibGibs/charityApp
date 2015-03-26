@@ -16,6 +16,12 @@ Route::get('/login', 'HomeController@login');
 Route::post('/login/post', 'HomeController@doLogin');
 Route::get('/logout', 'HomeController@logout');
 
+/* Posting */
+Route::get('/post', 'PostingController@getIndex');
+Route::get('/post/add/{post?}', 'PostingController@postAddIndex');
+Route::post('/post/add/post', 'PostingController@savePost');
+Route::get('/post/delete/{post?}', 'PostingController@delete');
+
 /* Users */
 Route::get('/users', 'HomeController@users');
 Route::get('/users/add', 'HomeController@addUser');
