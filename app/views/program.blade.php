@@ -22,6 +22,7 @@
 					<tr>
 						<th> ID </th>
 						<th> Name </th>
+						<th> Status </th>
 						<th class="td-actions">Action</th>
 					</tr>
 				</thead>
@@ -30,7 +31,14 @@
 					@foreach($program as $key => $v)
 						<tr>
 							<td class="span2"> {{$v->id}} </td>
-							<td class="span8"> {{$v->name}} </td>
+							<td class="span6"> {{$v->name}} </td>
+							<td class="span2"> 
+								@if($v->status == 0)
+									Complete
+								@else
+									Pending
+								@endif
+							</td>
 							<td class="td-actions span2">
 								<a href="{{URL::action('ProgramController@getProgramDetail', ['program' => $v->id])}}" class="btn btn-small btn-info"><i class="btn-icon-only icon-list-alt" data-toggle="tooltip" data-placement="top" title="Program Details"> </i></a>
 								@if(Auth::user()->isADmin())

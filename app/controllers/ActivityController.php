@@ -22,6 +22,7 @@ class ActivityController extends BaseController {
 	
 	public function save(){
 		$name = Input::get('name');
+		$status = Input::get('status');
 		$id = Input::get('id');
 		
 		if($id) {
@@ -30,6 +31,7 @@ class ActivityController extends BaseController {
 			$activity = new Activity;
 		}
 		$activity->name = $name;
+		$activity->status = $status;
 		
 		if($activity->save()) {
 
@@ -67,6 +69,7 @@ class ActivityController extends BaseController {
 	public function saveSubActivity() {
 		$name = Input::get('name');
 		$id = Input::get('id');
+		$status = Input::get('status');
 		
 		if($id) {
 			$sub_activity = SubActivity::find($id);
@@ -74,6 +77,7 @@ class ActivityController extends BaseController {
 			$sub_activity = new SubActivity;
 		}
 		$sub_activity->name = $name;
+		$sub_activity->status = $status;
 		
 		if($sub_activity->save()) {
 

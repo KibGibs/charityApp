@@ -23,6 +23,7 @@
 						<th> Donor </th>
 						<th> Amount </th>
 						<th> Date </th>
+						<th> Remarks </th>
 						<th class="td-actions">Action</th>
 					</tr>
 				</thead>
@@ -33,6 +34,7 @@
 							<td class="span2"> {{$v->user->first_name}} {{$v->user->last_name}}</td>
 							<td class="span2">PHP {{number_format($v->donated_amount,2)}} </td>
 							<td class="span2"> {{$v->donation_date}} </td>
+							<td class="span2"> {{$v->remarks}} </td>
 							<td class="td-actions span2">
 								<a href="{{URL::action('DonationController@donationDetail', ['donate' => $v->id])}}" class="btn btn-small btn-info"><i class="btn-icon-only icon-list-alt" data-toggle="tooltip" data-placement="top" title="Program Details"> </i></a>
 							</td>

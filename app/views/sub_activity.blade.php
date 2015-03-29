@@ -33,7 +33,18 @@
 												<p class="help-block">Sub Activity Name</p>
 											</div> <!-- /controls -->				
 										</div> <!-- /control-group -->
-
+										
+										<div class="control-group">											
+											<label class="control-label" for="username">Status</label>
+											<div class="controls">
+												<select name="status" id="">
+													
+													<option value="0">Ongoing</option>
+													<option value="1">Done</option>
+													
+												</select>
+											</div> <!-- /controls -->				
+										</div> <!-- /control-group -->
 		
 										<div class="form-actions">
 											<button type="submit" class="btn btn-primary">Save</button> 
@@ -46,6 +57,7 @@
 								<tr>
 									<th> ID </th>
 									<th> Name </th>
+									<th> Status </th>
 									<th class="td-actions">Action</th>
 								</tr>
 							</thead>
@@ -53,7 +65,14 @@
 								@foreach($sub_activity as $key => $v)
 									<tr>
 										<td class="span2"> {{$v->id}} </td>
-										<td class="span8"> {{$v->name}} </td>
+										<td class="span6"> {{$v->name}} </td>
+										<td class="span2"> 
+											@if($v->status == 0)
+												Ongoing
+											@else
+												Done
+											@endif
+										</td>
 										<td class="td-actions span2">
 											<a href="{{ URL::action('ActivityController@getIndexSubActivity', ['id' => $v->id ]) }}" class="btn btn-small btn-success"><i class="btn-icon-only icon-edit" data-toggle="tooltip" data-placement="top" title="Edit"> </i></a>
 											<a href="{{ URL::action('ActivityController@deleteSubActivity', ['id' => $v->id ]) }}" class="btn btn-danger btn-small" data-toggle="tooltip" data-placement="top" title="Delete"><i class="btn-icon-only icon-remove"> </i></a>

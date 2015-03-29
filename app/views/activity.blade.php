@@ -23,6 +23,7 @@
 					<tr>
 						<th> ID </th>
 						<th> Name </th>
+						<th> Status </th>
 						<th class="td-actions">Action</th>
 					</tr>
 				</thead>
@@ -30,7 +31,14 @@
 					@foreach($activity as $key => $v)
 						<tr>
 							<td class="span2"> {{$v->id}} </td>
-							<td class="span8"> {{$v->name}} </td>
+							<td class="span6"> {{$v->name}} </td>
+							<td class="span2"> 
+								@if($v->status == 0)
+									Ongoing
+								@else
+									Done
+								@endif
+							</td>
 							<td class="td-actions span2">
 								<a href="{{URL::action('ActivityController@getActivityDetail', ['id' => $v->id])}}" class="btn btn-small btn-info" data-toggle="tooltip" data-placement="top" title="Activity Details"><i class="btn-icon-only icon-list-alt"> </i></a>
 								<a href="{{ URL::action('ActivityController@getIndexAdd', ['id' => $v->id ]) }}" class="btn btn-small btn-success"><i class="btn-icon-only icon-edit" data-toggle="tooltip" data-placement="top" title="Edit"> </i></a>
