@@ -41,11 +41,18 @@ class PostingController extends \BaseController {
 		$post2->user_id = Auth::user()->id;
 
 		if($post2->save()){
+
 			if($id){
+
+				$activity_text = 'Edited post title: '.Input::get('posting_title');
+				UserActivityLog::saveLog($activity_text);
+
 				return Redirect::action('PostingController@getIndex')->with('success','Post Updated!');
 			}
 			else
 			{
+				$activity_text = 'Added post title: '.Input::get('posting_title');
+				UserActivityLog::saveLog($activity_text);
 				return Redirect::action('PostingController@getIndex')->with('success','Post Added!');
 			}
 			
@@ -56,6 +63,10 @@ class PostingController extends \BaseController {
 	public function delete($id) {
 		$post = Posting::find($id);
 		if($post->delete()) {
+
+			$activity_text = 'Deleted post title: '.$post->posting_title;
+			UserActivityLog::saveLog($activity_text);
+
 			return Redirect::action('PostingController@getIndex')->with('success','Post Deleted!');
 		}
 	}

@@ -101,7 +101,7 @@ class HomeController extends BaseController {
 			        'email' => Input::get('email')
 			    ),
 			    array(
-			        'username' => 'required|unique:users|min:4',
+			        'username' => 'required|unique:users|min:4|alpha_num',
 			        'first_name' => 'required',
 			        'last_name' => 'required',
 			        'password' => 'required|min:6|confirmed',
@@ -126,7 +126,11 @@ class HomeController extends BaseController {
 			$user->email = Input::get('email');
 			$user->user_type = Input::get('user_type');
 
-			$user->save(); 
+			$user->save();
+
+			$activity_text = 'Added user username: '.Input::get('username');
+
+			UserActivityLog::saveLog($activity_text);
 
 			return Redirect::action('HomeController@users')->with('success','User Added!');
 		}
@@ -184,7 +188,10 @@ class HomeController extends BaseController {
 			$user->first_name = Input::get('first_name');
 			$user->user_type = Input::get('user_type');
 
-			$user->save(); 
+			$user->save();
+
+			$activity_text = 'Edited user username: '.$user->username;
+			UserActivityLog::saveLog($activity_text);
 
 			return Redirect::action('HomeController@users')->with('success','User Updated!');
 		}
