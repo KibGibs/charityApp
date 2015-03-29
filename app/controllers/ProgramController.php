@@ -12,16 +12,26 @@ class ProgramController extends BaseController {
 	}
 	
 	public function programAddIndex($program = null){
-		return View::make('program_add');
+	
+		$data = array(
+			'id' => $program,
+			'name' => $program ? Program::find($program)->name : '',
+		);
+		return View::make('program_add', $data);
 	}
 	
 	public function saveProgram() {
 		$name = Input::get('name');
+		$id = Input::get('id');
+		if($id) {
+			$program = Program::find($id);
+		}else{
+			$program = new Program;
+		}
 		
-		$program = new Program;
 		$program->name = $name;
 		if($program->save()){
-			return Redirect::action('ProgramController@getIndex')->with('success','Program Added!');
+			return Redirect::action('ProgramController@getIndex')->with('success','Program Saved!');
 		}
 		
 	}
@@ -29,9 +39,15 @@ class ProgramController extends BaseController {
 	public function getProgramDetail($id) {
 		$program_detail = ProgramDetail::where('program_id', $id)->get();
 		foreach($program_detail as $k=>$v) {
-			$activity_detail =  ActivityDetail::find($v->activity_detail);
-				$v->activity_detail = $activity_detail;
+				$v->program = Program::find($v->program_id);
+				$v->activity_detail = ActivityDetail::find($v->activity_detail_id);
+				$v->activity_detail->activity = Activity::find($v->activity_detail->activity_id);
+				$v->activity_detail->subActivity = SubActivity::find($v->activity_detail->sub_activity_id);
+				$v->start_date = date('F j, Y', strtotime($v->start_date));
+				$v->end_date = date('F j, Y', strtotime($v->end_date));
+				
 		}
+		
 		$data = array(
 			'id' => $id,
 			'program_detail' => $program_detail,
@@ -45,6 +61,7 @@ class ProgramController extends BaseController {
 			'barangay' => Barangay::all(),
 			'program' => Program::find($id),
 			'activity' => Activity::all(),
+			'id' => $id,
 		);
 		return View::make('program_detail_add', $data);
 	}
@@ -85,5 +102,25 @@ class ProgramController extends BaseController {
 			}
 		}
 
+	}
+	
+	public function delete($program) {
+		$pr = Program::find($program);
+		if($pr) {
+			if($pr->delete()){
+				return Redirect::action('ProgramController@getIndex')->with('success','Program Deleted!');
+			}
+		}
+		
+	}
+	
+	public function deleteDetail($program,$detail){
+		$detail = ProgramDetail::find($detail);
+		
+		if($detail) {
+			if($detail->delete()) {
+				return Redirect::action('ProgramController@getProgramDetail',['program' => $program])->with('success','Program Detail Deleted!');
+			}
+		}
 	}
 }

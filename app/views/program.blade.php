@@ -16,7 +16,7 @@
 	</div> 
 	
 	<div class="widget-content">
-		@if(Auth::user()->isADmin())
+
 			<table class="table table-striped table-bordered">
 				<thead>
 					<tr>
@@ -33,12 +33,15 @@
 							<td class="span8"> {{$v->name}} </td>
 							<td class="td-actions span2">
 								<a href="{{URL::action('ProgramController@getProgramDetail', ['program' => $v->id])}}" class="btn btn-small btn-info"><i class="btn-icon-only icon-list-alt" data-toggle="tooltip" data-placement="top" title="Program Details"> </i></a>
+								@if(Auth::user()->isADmin())
+								<a href="{{ URL::action('ProgramController@programAddIndex', ['id' => $v->id ]) }}" class="btn btn-small btn-success"><i class="btn-icon-only icon-edit" data-toggle="tooltip" data-placement="top" title="Edit"> </i></a>
+								<a href="{{ URL::action('ProgramController@delete', ['id' => $v->id ]) }}" class="btn btn-danger btn-small" data-toggle="tooltip" data-placement="top" title="Delete"><i class="btn-icon-only icon-remove"> </i></a>
+								@endif
 							</td>
 						</tr>
 					@endforeach
 				</tbody>
 			</table>
-		@endif
 		{{$program->links()}}
 	</div>
 	 <!-- Modal -->

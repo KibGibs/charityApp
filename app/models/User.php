@@ -29,5 +29,20 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 			return true;
 		}
 	}
+	
+	public function isStaff() {
+
+		if($this->user_type == 'staff') {
+			return true;
+		}
+	}
+	
+	public function isDonor() {
+
+		if($this->user_type == 'donor') {
+			return true;
+		}
+	}
+
 
 }

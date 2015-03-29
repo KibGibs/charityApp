@@ -45,5 +45,6 @@
 
             {{$post->links()}}
 </div>
+</div>
 @stop
 

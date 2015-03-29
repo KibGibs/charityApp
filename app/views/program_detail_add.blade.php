@@ -2,6 +2,8 @@
 
 @section('content')
 <div class="container" data-ng-app="app" data-ng-controller="programCtrl" ng-cloak>
+		 <a href="{{ URL::action('ProgramController@getProgramDetail', ['id' => $id]) }}" role="button" class="btn btn-primary">View Program Detail</a>
+			<br /><br />
 	      <div class="row">
 	      	
 	      	<div class="span12">      		

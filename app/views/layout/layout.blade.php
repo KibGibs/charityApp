@@ -23,7 +23,7 @@
     <![endif]-->
 
     <style>
-    input[type="text"], input[type="password"], input[type="email"]{ height : 30px; }
+   input[type="date"], input[type="number"],  input[type="text"], input[type="password"], input[type="email"]{ height : 30px; }
     </style>
 
 </head>
@@ -69,25 +69,35 @@
           </a> 
         </li>
         @endif
+		 @if(Auth::user()->isADmin() || Auth::user()->isStaff())
 		 <li class="@if(Request::is('program*')){{'active'}}@endif">
           <a href="{{URL::action('ProgramController@getIndex')}}">
             <i class="icon-calendar"></i><span>Program</span> 
           </a> 
         </li>
+		@endif
+		@if(Auth::user()->isADmin())
 		 <li class="@if(Request::is('barangay*')){{'active'}}@endif">
           <a href="{{URL::action('BarangayController@getIndex')}}">
             <i class="icon-globe"></i><span>Barangay</span> 
           </a> 
         </li> 
-		
+		 @endif
+		 @if(Auth::user()->isADmin())
 		<li class="@if(Request::is('activity*')){{'active'}}@endif">
           <a href="{{URL::action('ActivityController@getIndex')}}">
             <i class="icon-tasks"></i><span>Activity</span> 
           </a> 
         </li>
-      <li class="@if(Request::is('post*')){{'active'}}@endif">
+		@endif
+		<li class="@if(Request::is('post*')){{'active'}}@endif">
           <a href="{{URL::action('PostingController@getIndex')}}">
             <i class="icon-paste"></i><span>Post</span> 
+          </a> 
+        </li>
+		<li class="@if(Request::is('donation*')){{'active'}}@endif">
+          <a href="{{URL::action('DonationController@getIndex')}}">
+            <i class="icon-money"></i><span>Donation</span> 
           </a> 
         </li>
 <!--         <li><a href="reports.html"><i class="icon-list-alt"></i><span>Reports</span> </a> </li>

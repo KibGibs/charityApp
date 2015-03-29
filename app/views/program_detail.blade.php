@@ -9,7 +9,6 @@
 		{{Session::get('success')}}
 	</div>
 	@endif
-	@if(Auth::user()->isADmin())
 
 		<table class="table table-striped table-bordered">
 			<thead>
@@ -29,21 +28,20 @@
 			@foreach($program_detail as $key => $v)
 					<tr>
 						<td class="span2"> {{$v->id}} </td>
-						<td class="span2"> {{$v->program_id}} </td>
-						<td class="span2"> {{$v->activity_detail_id}} </td>
-						<td class="span2"> {{$v->activity_detail_id}} </td>
-						<td class="span2"> {{$v->cost}} </td>
-						<td class="span2"> {{$v->qty}} </td>
+						<td class="span2"> {{$v->program->name}} </td>
+						<td class="span2"> {{$v->activity_detail->activity->name}} </td>
+						<td class="span2"> {{$v->activity_detail->subActivity->name}} </td>
+						<td class="span2">PHP {{ number_format($v->cost, 2) }} </td>
+						<td class="span2"> {{ $v->qty}} </td>
 						<td class="span2"> {{$v->start_date}} </td>
 						<td class="span2"> {{$v->end_date}} </td>
 						<td class="td-actions span2">
-							<a href="{{ URL::action('ActivityController@deleteActivityDetail', ['activity' => $v->id ]) }}" class="btn btn-danger btn-small" data-toggle="tooltip" data-placement="top" title="Delete"><i class="btn-icon-only icon-remove"> </i></a>
+							<a href="{{ URL::action('ProgramController@deleteDetail', ['program'=>$id,'detail' => $v->id ]) }}" class="btn btn-danger btn-small" data-toggle="tooltip" data-placement="top" title="Delete"><i class="btn-icon-only icon-remove"> </i></a>
 						</td>
 					</tr>
 				@endforeach
 			</tbody>
 		</table>
-	@endif
 	
 </div>
 @stop

@@ -32,11 +32,13 @@ Route::post('/users/update/{id}', 'HomeController@update');
 /* Program */
 Route::get('/program', 'ProgramController@getIndex');
 Route::get('/program/add/{program?}', 'ProgramController@programAddIndex');
+Route::get('/program/delete/{program?}', 'ProgramController@delete');
 Route::post('/program/add/post', 'ProgramController@saveProgram');
 Route::get('/program/detail/{program?}', 'ProgramController@getProgramDetail');
 Route::get('/program/detail/add/{program?}', 'ProgramController@addProgramDetail');
 Route::get('/program/subactivity/get/{program?}', 'ProgramController@getSubActivity');
 Route::post('/program/post', 'ProgramController@postProgramDetail');
+Route::get('/program/detail/delete/{program?}/{detail?}', 'ProgramController@deleteDetail');
 
 /* Barangay */
 Route::get('/barangay', 'BarangayController@getIndex');
@@ -58,3 +60,10 @@ Route::get('/activity/detail/{activity?}/', 'ActivityController@getActivityDetai
 Route::post('/activity/detail/post/', 'ActivityController@saveActivityDetail');
 Route::get('/activity/detail/delete/{id?}', 'ActivityController@deleteActivityDetail');
 
+/* Donation */
+Route::get('/donation', 'DonationController@getIndex');
+Route::get('/donation/donate', 'DonationController@donate');
+Route::get('/donation/donate/{donate?}', 'DonationController@donationDetail');
+Route::get('/donation/donate/delete/{donate?}/{detail?}', 'DonationController@deleteDetail');
+Route::post('/donate/post/detail', 'DonationController@postDonateDetail');
+Route::post('/donate/post', 'DonationController@postDonate');
