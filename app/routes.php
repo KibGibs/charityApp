@@ -63,6 +63,9 @@ Route::get('/activity/detail/delete/{id?}', 'ActivityController@deleteActivityDe
 /* Donation */
 Route::get('/donation', 'DonationController@getIndex');
 Route::get('/donation/donate', 'DonationController@donate');
+Route::get('/donation/donate/paypal', 'DonationController@paypalDonate');
+Route::get('/donation/donate/paypal/return', 'DonationController@paypalReturn');
+Route::get('/donation/donate/paypal/cancel', 'DonationController@paypalCancel');
 Route::get('/donation/donate/{donate?}', 'DonationController@donationDetail');
 Route::get('/donation/donate/delete/{donate?}/{detail?}', 'DonationController@deleteDetail');
 Route::post('/donate/post/detail', 'DonationController@postDonateDetail');

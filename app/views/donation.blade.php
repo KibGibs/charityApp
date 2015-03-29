@@ -3,6 +3,8 @@
 @section('content')
 <div class="container">
  <a href="{{ URL::action('DonationController@donate') }}" role="button" class="btn btn-primary">DONATE</a>
+ <a href="{{ URL::action('DonationController@paypalDonate') }}" role="button" class="btn btn-primary">DONATE via PayPal</a>
+
 	<br /><br />
 	@if(Session::has('success'))
 	<div class="alert alert-success">
