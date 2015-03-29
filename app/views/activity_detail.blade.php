@@ -12,7 +12,7 @@
 	      		<div class="widget">
 	      			
 	      			<div class="widget-header">
-	      				<i class="icon-user"></i>
+	      				<i class="icon-tasks"></i>
 	      				<h3>Add Sub Activity</h3>
 	  				</div> <!-- /widget-header -->
 

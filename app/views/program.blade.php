@@ -9,31 +9,37 @@
 		{{Session::get('success')}}
 	</div>
 	@endif
-	@if(Auth::user()->isADmin())
-		<table class="table table-striped table-bordered">
-			<thead>
-				<tr>
-					<th> ID </th>
-					<th> Name </th>
-					<th class="td-actions">Action</th>
-				</tr>
-			</thead>
-			<tbody>
 
-				@foreach($program as $key => $v)
-					<tr>
-						<td class="span2"> {{$v->id}} </td>
-						<td class="span8"> {{$v->name}} </td>
-						<td class="td-actions span2">
-							<a href="{{URL::action('ProgramController@getProgramDetail', ['program' => $v->id])}}" class="btn btn-small btn-info"><i class="btn-icon-only icon-list-alt" data-toggle="tooltip" data-placement="top" title="Program Details"> </i></a>
-						</td>
-					</tr>
-				@endforeach
-			<tr>
-			</tbody>
-		</table>
-	@endif
+	<div class="widget-header">
+		<i class="icon-calendar"></i>
+		<h3>Program List</h3>
+	</div> 
 	
+	<div class="widget-content">
+		@if(Auth::user()->isADmin())
+			<table class="table table-striped table-bordered">
+				<thead>
+					<tr>
+						<th> ID </th>
+						<th> Name </th>
+						<th class="td-actions">Action</th>
+					</tr>
+				</thead>
+				<tbody>
+
+					@foreach($program as $key => $v)
+						<tr>
+							<td class="span2"> {{$v->id}} </td>
+							<td class="span8"> {{$v->name}} </td>
+							<td class="td-actions span2">
+								<a href="{{URL::action('ProgramController@getProgramDetail', ['program' => $v->id])}}" class="btn btn-small btn-info"><i class="btn-icon-only icon-list-alt" data-toggle="tooltip" data-placement="top" title="Program Details"> </i></a>
+							</td>
+						</tr>
+					@endforeach
+				</tbody>
+			</table>
+		@endif
+	</div>
 	 <!-- Modal -->
 	{{Form::open(array('action' => 'ProgramController@saveProgram'))}}
 	<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

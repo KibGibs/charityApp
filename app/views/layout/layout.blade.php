@@ -23,7 +23,7 @@
     <![endif]-->
 
     <style>
-    input[type="text"]{ height : 30px; }
+    input[type="text"], input[type="password"], input[type="email"]{ height : 30px; }
     </style>
 
 </head>

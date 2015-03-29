@@ -11,8 +11,16 @@
 	      		<div class="widget">
 	      			
 	      			<div class="widget-header">
-	      				<i class="icon-user"></i>
-	      				<h3>Add Barangay</h3>
+	      				<i class="icon-globe"></i>
+	      				<h3>
+	      				@if($name == '')
+	      				Add
+	      				@else
+	      				Edit
+	      				@endif
+	      				 
+	      				Barangay
+	      				</h3>
 	  				</div> <!-- /widget-header -->
 					
 					<div class="widget-content">

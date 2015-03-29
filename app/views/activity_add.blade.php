@@ -11,8 +11,15 @@
 	      		<div class="widget">
 	      			
 	      			<div class="widget-header">
-	      				<i class="icon-user"></i>
-	      				<h3>Add Activity</h3>
+	      				<i class="icon-tasks"></i>
+	      				<h3>
+	      					@if($name == '')
+	      					Add 
+	      					@else
+							Edit
+	      					@endif
+	      					Activity
+	      				</h3>
 	  				</div> <!-- /widget-header -->
 					
 					<div class="widget-content">

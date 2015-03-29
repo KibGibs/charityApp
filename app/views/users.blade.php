@@ -9,6 +9,13 @@
 		{{Session::get('success')}}
 	</div>
 	@endif
+
+	<div class="widget-header">
+		<i class="icon-user"></i>
+		<h3>User List</h3>
+	</div> <!-- /widget-header -->
+
+	<div class="widget-content">
 	
 		<table class="table table-striped table-bordered">
 			<thead>
@@ -36,14 +43,12 @@
 						<td class="td-actions">
 							<a href="{{URL::action('HomeController@editUser', ['id' => $v->id])}}" class="btn btn-small btn-success"><i class="btn-icon-only icon-edit"> </i></a>
 						</td>
-
 					</tr>
 				@endforeach
-	
-			<tr>
 			</tbody>
 		</table>
 	@endif
+	</div>
 </div>
 @stop
 

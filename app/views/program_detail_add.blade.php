@@ -9,7 +9,7 @@
 	      		<div class="widget ">
 	      			
 	      			<div class="widget-header">
-	      				<i class="icon-user"></i>
+	      				<i class="icon-calendar"></i>
 	      				<h3>{{$program->name}}</h3>
 	  				</div> <!-- /widget-header -->
 					
