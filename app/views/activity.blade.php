@@ -41,6 +41,7 @@
 				</tbody>
 			</table>
 		@endif
+		{{$activity->links()}}
 	</div>
 </div>
 @stop

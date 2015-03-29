@@ -6,14 +6,12 @@ class ProgramController extends BaseController {
 	public function getIndex(){
 	
 		$data = array(
-			'program' => Program::all(),
+			'program' => Program::paginate(10),
 		);
 		return View::make('program', $data);
 	}
 	
 	public function programAddIndex($program = null){
-	
-		
 		return View::make('program_add');
 	}
 	

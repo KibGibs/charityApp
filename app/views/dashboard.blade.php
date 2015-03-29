@@ -42,6 +42,8 @@
                @endforeach
               </ul>
             </div>
+
+            {{$post->links()}}
 </div>
 @stop
 

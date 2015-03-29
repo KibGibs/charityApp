@@ -39,6 +39,8 @@
 				</tbody>
 			</table>
 		@endif
+
+		{{$barangay->links()}}
 	</div>
 </div>
 @stop

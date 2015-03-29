@@ -62,7 +62,8 @@
 								@endforeach
 							<tr>
 							</tbody>
-						</table>			
+						</table>	
+						{{$sub_activity->links()}}		
 					</div> <!-- /widget-content -->
 						
 				</div> <!-- /widget -->

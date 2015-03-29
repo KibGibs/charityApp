@@ -10,7 +10,7 @@ class PostingController extends \BaseController {
 	public function getIndex()
 	{
 		$data = array(
-			'post' => Posting::all(),
+			'post' => Posting::paginate(10),
 		);
 
 		return View::make('post',$data);

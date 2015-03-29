@@ -39,6 +39,7 @@
 				</tbody>
 			</table>
 		@endif
+		{{$program->links()}}
 	</div>
 	 <!-- Modal -->
 	{{Form::open(array('action' => 'ProgramController@saveProgram'))}}
