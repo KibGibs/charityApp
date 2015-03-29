@@ -14,13 +14,18 @@
 	  				</div> <!-- /widget-header -->
 					
 					<div class="widget-content">
-							
-								<form id="edit-profile" class="form-horizontal">
+								<div class="alert alert-success" ng-show="success">
+									Program Detail Added.
+								</div>
+								<div class="alert alert-danger" ng-show="error">
+									Program Detail already Exist.
+								</div>
+								<form id="edit-profile" class="form-horizontal" ng-submit="add()">
 									<fieldset>
 										<div class="control-group">											
 											<label class="control-label" for="username">Barangay</label>
 											<div class="controls">
-													<select class="form-control span5" 
+													<select class="form-control span5"  required
 														ng-model="program.barangay" 
 														ng-options="bg.id as bg.name for bg in barangay" >
 														<option value="">-- Select --</option>																							
@@ -31,7 +36,7 @@
 										<div class="control-group">											
 											<label class="control-label" for="username">Activity</label>
 											<div class="controls">
-												<select class="form-control span5" 
+												<select class="form-control span5" required 
 														ng-model="program.activity" 
 														ng-options="ac.id as ac.name for ac in activity" 
 														ng-change="selectedActivity(program.activity)">
@@ -43,7 +48,7 @@
 										<div class="control-group">											
 											<label class="control-label" for="username">Sub Activity</label>
 											<div class="controls">
-												<select class="form-control span5" 
+												<select class="form-control span5" required
 														ng-model="program.subActivity" 
 														ng-options="sac.sub_activity_id.id as sac.sub_activity_id.name for sac in subActivity" >
 														<option value="">-- Select --</option>
@@ -68,7 +73,14 @@
 										<div class="control-group">											
 											<label class="control-label" for="firstname">Cost</label>										
 											<div class="controls">
-												<input class="span6" value="" type="text" style="height: 30px; ">
+												<input class="span6" value="" type="text" style="height: 30px; " ng-model="program.cost" required>
+											</div> <!-- /controls -->
+										</div>
+										
+											<div class="control-group">											
+											<label class="control-label" for="firstname">Quantity</label>										
+											<div class="controls">
+												<input class="span6" value="" type="text" style="height: 30px; " ng-model="program.qty" required>
 											</div> <!-- /controls -->
 										</div>
 
@@ -95,7 +107,9 @@
 		array(
 			'barangay'=>$barangay,
 			'activity'=>$activity,
+			'program'=>$program,
 			'get_sub_activity_url'=> URL::action('ProgramController@getSubActivity', [':id:']),
+			'post_program_detail'=> URL::action('ProgramController@postProgramDetail'),
 		)
 	)}};
 	</script>
