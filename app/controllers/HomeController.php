@@ -17,7 +17,7 @@ class HomeController extends BaseController {
 	public function home(){
 
 		if(Auth::check()){
-			$data['post'] = Posting::where('status', '=', 1)->orderBy('id','desc')->get();
+			$data['post'] = Posting::where('status', '=', 1)->orderBy('id','desc')->paginate(10);
 			 return View::make('dashboard',$data);
 		}
 		else{
@@ -30,7 +30,7 @@ class HomeController extends BaseController {
 		//'users' => User::where('status', 0)->get(),
 		if(Auth::check() && Auth::user()->isADmin()){
 			$data = array(
-				'users' => User::get(),
+				'users' => User::paginate(10),
 			);
 			return View::make('users',$data);
 		}

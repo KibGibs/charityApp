@@ -6,7 +6,7 @@ class BarangayController extends BaseController {
 	public function getIndex(){
 	
 		$data = array(
-			'barangay' => Barangay::all(),
+			'barangay' => Barangay::paginate(10),
 		);
 		return View::make('barangay', $data);
 	}

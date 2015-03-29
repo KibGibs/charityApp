@@ -6,7 +6,7 @@ class ActivityController extends BaseController {
 	public function getIndex(){
 	
 		$data = array(
-			'activity' => Activity::all(),
+			'activity' => Activity::paginate(10),
 		);
 		return View::make('activity', $data);
 	}
@@ -47,7 +47,7 @@ class ActivityController extends BaseController {
 		$data = array(
 			'id' => $id,
 			'name' => $id ? SubActivity::find($id)->name : '',
-			'sub_activity' => SubActivity::all(),
+			'sub_activity' => SubActivity::paginate(10),
 		);
 		return View::make('sub_activity', $data);
 	}

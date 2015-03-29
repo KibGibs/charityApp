@@ -47,7 +47,7 @@
 
 			</tbody>
 		</table>
-
+		{{$post->links()}}
 	</div>
 </div>
 @stop
