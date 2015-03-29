@@ -32,13 +32,30 @@ class BarangayController extends BaseController {
 		$barangay->name = $name;
 		
 		if($barangay->save()) {
+
+			if($id){
+				$activity_text = 'Edited barangay name: '.$name;
+			}
+			else
+			{
+				$activity_text = 'Added barangay name: '.$name;
+			}
+			
+
+			UserActivityLog::saveLog($activity_text);
+
 			return Redirect::action('BarangayController@getIndex')->with('success','Barangay Saved!');
 		}
 	}
 	
 	public function delete($id) {
 		$barangay = Barangay::find($id);
+
 		if($barangay->delete()) {
+
+			$activity_text = 'Deleted barangay name: '.$barangay->name;
+			UserActivityLog::saveLog($activity_text);
+
 			return Redirect::action('BarangayController@getIndex')->with('success','Barangay Deleted!');
 		}
 	}

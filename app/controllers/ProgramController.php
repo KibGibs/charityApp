@@ -31,7 +31,11 @@ class ProgramController extends BaseController {
 		
 		$program->name = $name;
 		if($program->save()){
-			return Redirect::action('ProgramController@getIndex')->with('success','Program Saved!');
+		
+			$activity_text = 'Added program name: '.$name;
+			UserActivityLog::saveLog($activity_text);
+			return Redirect::action('ProgramController@getIndex')->with('success','Program Added!');
+
 		}
 		
 	}
