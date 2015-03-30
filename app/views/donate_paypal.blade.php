@@ -12,7 +12,7 @@
 	      			
 	      			<div class="widget-header">
 	      				<i class="icon-paste"></i>
-	      				<h3>Donate</h3>
+	      				<h3>Donate via PayPal</h3>
 	  				</div> <!-- /widget-header -->
 					
 					<div class="widget-content">
@@ -43,7 +43,7 @@
 									</div> <!-- /controls -->				
 								</div> <!-- /control-group -->
 								<div class="form-actions">
-									<button type="submit" class="btn btn-primary">Save</button> 
+									<button type="submit" class="btn btn-primary">Donate</button> 
 								</div> <!-- /form-actions -->
 							</fieldset>
 						</form>

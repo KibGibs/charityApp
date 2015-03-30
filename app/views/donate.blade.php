@@ -43,7 +43,7 @@
 									</div> <!-- /controls -->				
 								</div> <!-- /control-group -->
 								<div class="form-actions">
-									<button type="submit" class="btn btn-primary">Save</button> 
+									<button type="submit" class="btn btn-primary">Donate</button> 
 								</div> <!-- /form-actions -->
 							</fieldset>
 						</form>
