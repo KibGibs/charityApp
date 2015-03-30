@@ -154,8 +154,8 @@ class ProgramController extends BaseController {
 			'donations' => $donation_detail,
 			'program' => Program::find($id)
 		);
-		
+		//return View::make('pdf.program_donation', $data);
 		$pdf = PDF::loadView('pdf.program_donation', $data);
-		return $pdf->stream('pdf.program_donation');
+		return $pdf->stream('program_donation');
 	}
 }
