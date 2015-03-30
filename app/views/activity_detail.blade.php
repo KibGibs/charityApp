@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-
+		
 		  <a href="{{ URL::action('ActivityController@getIndex') }}" role="button" class="btn btn-primary">View Activities</a>
 		  <br /><br />
 	      <div class="row">
@@ -13,7 +13,7 @@
 	      			
 	      			<div class="widget-header">
 	      				<i class="icon-tasks"></i>
-	      				<h3>Add Sub Activity</h3>
+	      				<h3>Activity Details</h3>
 	  				</div> <!-- /widget-header -->
 
 					<div class="widget-content">
@@ -27,6 +27,7 @@
 										{{Session::get('Error')}}
 									</div>
 								@endif
+								@if(!Auth::user()->isDonor())
 								{{Form::open(array('action' => 'ActivityController@saveActivityDetail','class' => 'form-horizontal'))}}
 								<!-- <form id="edit-profile" class="form-horizontal"> -->
 									<fieldset>
@@ -49,13 +50,15 @@
 										</div> <!-- /form-actions -->
 									</fieldset>
 								</form>
-						
+								@endif
 						<table class="table table-striped table-bordered">
 							<thead>
 								<tr>
 									<th> ID </th>
 									<th> Sub Activity </th>
-									<th class="td-actions">Action</th>
+									@if(!Auth::user()->isDonor())
+										<th class="td-actions">Action</th>
+									@endif
 								</tr>
 							</thead>
 							<tbody>
@@ -63,9 +66,11 @@
 									<tr>
 										<td class="span2"> {{$v->id}} </td>
 										<td class="span8"> {{$v->sub_activity_id->name}} </td>
+										@if(!Auth::user()->isDonor())
 										<td class="td-actions span2">
 											<a href="{{ URL::action('ActivityController@deleteActivityDetail', ['activity' => $v->id ]) }}" class="btn btn-danger btn-small" data-toggle="tooltip" data-placement="top" title="Delete"><i class="btn-icon-only icon-remove"> </i></a>
 										</td>
+										@endif
 									</tr>
 								@endforeach
 							<tr>

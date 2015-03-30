@@ -9,8 +9,17 @@ class PostingController extends \BaseController {
 	 */
 	public function getIndex()
 	{
+		if(!Auth::user()->isDonor()) {
+			$posts = Posting::paginate(10);
+		}else{
+			$posts = Posting::where('user_id', Auth::user()->id)->paginate(10);
+		}
+		
+		foreach($posts as $k=>$v) {
+			$v->author = User::find($v->user_id);
+		}
 		$data = array(
-			'post' => Posting::paginate(10),
+			'post' => $posts,
 		);
 
 		return View::make('post',$data);

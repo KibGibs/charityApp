@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <title>Charity</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <link href="{{asset('bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
@@ -42,9 +43,9 @@
             </ul>
           </li>
         </ul>
-        <form class="navbar-search pull-right">
+        <!--<form class="navbar-search pull-right">
           <input type="text" class="search-query" placeholder="Search">
-        </form>
+        </form>-->
       </div>
       <!--/.nav-collapse --> 
     </div>
@@ -69,27 +70,23 @@
           </a> 
         </li>
         @endif
-		 @if(Auth::user()->isADmin() || Auth::user()->isStaff())
+
 		 <li class="@if(Request::is('program*')){{'active'}}@endif">
           <a href="{{URL::action('ProgramController@getIndex')}}">
             <i class="icon-calendar"></i><span>Program</span> 
           </a> 
         </li>
-		@endif
-		@if(Auth::user()->isADmin())
+
 		 <li class="@if(Request::is('barangay*')){{'active'}}@endif">
           <a href="{{URL::action('BarangayController@getIndex')}}">
             <i class="icon-globe"></i><span>Barangay</span> 
           </a> 
         </li> 
-		 @endif
-		 @if(Auth::user()->isADmin())
 		<li class="@if(Request::is('activity*')){{'active'}}@endif">
           <a href="{{URL::action('ActivityController@getIndex')}}">
             <i class="icon-tasks"></i><span>Activity</span> 
           </a> 
         </li>
-		@endif
 		<li class="@if(Request::is('post*')){{'active'}}@endif">
           <a href="{{URL::action('PostingController@getIndex')}}">
             <i class="icon-paste"></i><span>Post</span> 

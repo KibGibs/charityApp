@@ -23,6 +23,7 @@
 					<th> Post Title </th>
 					<th> Post </th>
 					<th> Status </th>
+					<th> Author </th>
 					<th class="td-actions">Action</th>
 				</tr>
 			</thead>
@@ -31,12 +32,13 @@
 				@foreach($post as $key => $v)
 				<tr>
 					<td class="span2"> {{$v->posting_title}} </td>
-					<td class="span8"> {{str_limit($v->post, $limit = 150, $end = '...')}} </td>
+					<td class="span6"> {{str_limit($v->post, $limit = 150, $end = '...')}} </td>
 					@if($v->status == 1)
-					<td class="span8"> Published </td>
+					<td class="span2"> Published </td>
 					@elseif($v->status == 2)
-					<td class="span8"> Draft </td>
+					<td class="span4"> Draft </td>
 					@endif
+					<td class="span3"> {{$v->author->first_name}} {{$v->author->last_name}}</td>
 					<td class="td-actions span2">
 					<a href="{{ URL::action('PostingController@postAddIndex', ['id' => $v->id ]) }}" class="btn btn-small btn-success"><i class="btn-icon-only icon-edit" data-toggle="tooltip" data-placement="top" title="Edit"> </i></a>
 

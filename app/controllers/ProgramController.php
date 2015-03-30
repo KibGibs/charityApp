@@ -129,4 +129,33 @@ class ProgramController extends BaseController {
 			}
 		}
 	}
+	
+	public function viewDonations($id) {
+		$donation_detail = DonationDetail::where('progam_id', $id)->get();
+		foreach($donation_detail as $k=>$v) {
+			$v->donation = Donation::find($v->donation_id);
+			$v->donation->donor = User::find($v->donation->user_id);
+		}
+		$data = array(
+			'donations' => $donation_detail,
+			'id' => $id
+		);
+		return View::make('program_donations', $data);
+	}
+	
+	public function printPDF($id) {
+		$donation_detail = DonationDetail::where('progam_id', $id)->get();
+		foreach($donation_detail as $k=>$v) {
+			$v->donation = Donation::find($v->donation_id);
+			$v->donation->donor = User::find($v->donation->user_id);
+		}
+		
+		$data = array(
+			'donations' => $donation_detail,
+			'program' => Program::find($id)
+		);
+		
+		$pdf = PDF::loadView('pdf.program_donation', $data);
+		return $pdf->stream('pdf.program_donation');
+	}
 }

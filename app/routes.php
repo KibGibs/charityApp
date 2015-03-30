@@ -39,6 +39,8 @@ Route::get('/program/detail/add/{program?}', 'ProgramController@addProgramDetail
 Route::get('/program/subactivity/get/{program?}', 'ProgramController@getSubActivity');
 Route::post('/program/post', 'ProgramController@postProgramDetail');
 Route::get('/program/detail/delete/{program?}/{detail?}', 'ProgramController@deleteDetail');
+Route::get('/program/donations/{detail?}', 'ProgramController@viewDonations');
+Route::get('/program/pdf/{program?}', 'ProgramController@printPDF');
 
 /* Barangay */
 Route::get('/barangay', 'BarangayController@getIndex');
@@ -63,10 +65,12 @@ Route::get('/activity/detail/delete/{id?}', 'ActivityController@deleteActivityDe
 /* Donation */
 Route::get('/donation', 'DonationController@getIndex');
 Route::get('/donation/donate', 'DonationController@donate');
-Route::get('/donation/donate/paypal', 'DonationController@paypalDonate');
-Route::get('/donation/donate/paypal/return', 'DonationController@paypalReturn');
+Route::get('/donation/donate/paypal/index', 'DonationController@donateViaPaypal');
+Route::post('/donation/donate/paypal', 'DonationController@paypalDonate');
+Route::get('/donation/donate/paypal/{amount?}/{date?}/{remarks?}', 'DonationController@paypalReturn');
 Route::get('/donation/donate/paypal/cancel', 'DonationController@paypalCancel');
 Route::get('/donation/donate/{donate?}', 'DonationController@donationDetail');
+Route::get('/donation/received/{donate?}', 'DonationController@received');
 Route::get('/donation/donate/delete/{donate?}/{detail?}', 'DonationController@deleteDetail');
 Route::post('/donate/post/detail', 'DonationController@postDonateDetail');
 Route::post('/donate/post', 'DonationController@postDonate');

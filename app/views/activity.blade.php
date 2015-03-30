@@ -2,8 +2,10 @@
 
 @section('content')
 <div class="container">
- <a href="{{ URL::action('ActivityController@getIndexAdd') }}" role="button" class="btn btn-primary">Add Activity</a>
- <a href="{{ URL::action('ActivityController@getIndexSubActivity') }}" role="button" class="btn btn-primary">Add Sub Activity</a>
+	@if(!Auth::user()->isDonor())
+	 <a href="{{ URL::action('ActivityController@getIndexAdd') }}" role="button" class="btn btn-primary">Add Activity</a>
+	 <a href="{{ URL::action('ActivityController@getIndexSubActivity') }}" role="button" class="btn btn-primary">Add Sub Activity</a>
+	@endif
 	<br /><br />
 	@if(Session::has('success'))
 	<div class="alert alert-success">
@@ -17,7 +19,6 @@
 	</div> 
 
 	<div class="widget-content">
-		@if(Auth::user()->isADmin())
 			<table class="table table-striped table-bordered">
 				<thead>
 					<tr>
@@ -41,14 +42,15 @@
 							</td>
 							<td class="td-actions span2">
 								<a href="{{URL::action('ActivityController@getActivityDetail', ['id' => $v->id])}}" class="btn btn-small btn-info" data-toggle="tooltip" data-placement="top" title="Activity Details"><i class="btn-icon-only icon-list-alt"> </i></a>
+								@if(!Auth::user()->isDonor())
 								<a href="{{ URL::action('ActivityController@getIndexAdd', ['id' => $v->id ]) }}" class="btn btn-small btn-success"><i class="btn-icon-only icon-edit" data-toggle="tooltip" data-placement="top" title="Edit"> </i></a>
 								<a href="{{ URL::action('ActivityController@delete', ['id' => $v->id ]) }}" class="btn btn-danger btn-small" data-toggle="tooltip" data-placement="top" title="Delete"><i class="btn-icon-only icon-remove"> </i></a>
+								@endif
 							</td>
 						</tr>
 					@endforeach
 				</tbody>
 			</table>
-		@endif
 		{{$activity->links()}}
 	</div>
 </div>
