@@ -171,7 +171,7 @@ class DonationController extends BaseController {
 			}
 		}
 		$donation->save();
-		return Redirect::action('DonationController@getIndex')->with('success','Donatio Received');
+		return Redirect::action('DonationController@getIndex')->with('success','Donation Received');
 	}
 
 

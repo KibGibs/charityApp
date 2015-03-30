@@ -4,6 +4,7 @@
 <div class="container">
 	@if(!Auth::user()->isDonor())
 	<a href="{{ URL::action('ProgramController@addProgramDetail', ['id' => $id]) }}" role="button" class="btn btn-primary">Add Program Detail</a>
+	<!-- <a href="{{ URL::action('ProgramController@printPDF2', ['program' => $id]) }}" class="btn btn-primary">Print PDF</a> -->
 	@endif
 	<br /><br />
 	@if(Session::has('success'))
@@ -11,7 +12,13 @@
 		{{Session::get('success')}}
 	</div>
 	@endif
-
+	
+		<div class="widget-header">
+			<i class="icon-calendar"></i>
+			<h3>Program: {{$program_name}}</h3>
+	  	</div> <!-- /widget-header -->
+		
+		<div class="widget-content">
 		<table class="table table-striped table-bordered">
 			<thead>
 				<tr>
@@ -48,7 +55,7 @@
 				@endforeach
 			</tbody>
 		</table>
-	
+	</div>
 </div>
 @stop
 

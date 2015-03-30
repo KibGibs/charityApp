@@ -28,20 +28,6 @@
 										<p class="help-block">Program name</p>
 									</div> <!-- /controls -->				
 								</div> <!-- /control-group -->
-								
-								<div class="control-group">											
-									<label class="control-label" for="username">Status</label>
-									<div class="controls">
-										<select name="status" id="">
-											
-											<option value="0">Ongoing</option>
-											<option value="1">Done</option>
-											
-										</select>
-									</div> <!-- /controls -->				
-								</div> <!-- /control-group -->
-
-
 								<div class="form-actions">
 									<button type="submit" class="btn btn-primary">Save</button> 
 								</div> <!-- /form-actions -->

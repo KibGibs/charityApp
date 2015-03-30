@@ -31,6 +31,7 @@ Route::post('/users/update/{id}', 'HomeController@update');
 
 /* Program */
 Route::get('/program', 'ProgramController@getIndex');
+Route::get('/program/toggle/{id?}', 'ProgramController@getToggleStatus');
 Route::get('/program/add/{program?}', 'ProgramController@programAddIndex');
 Route::get('/program/delete/{program?}', 'ProgramController@delete');
 Route::post('/program/add/post', 'ProgramController@saveProgram');
@@ -41,6 +42,7 @@ Route::post('/program/post', 'ProgramController@postProgramDetail');
 Route::get('/program/detail/delete/{program?}/{detail?}', 'ProgramController@deleteDetail');
 Route::get('/program/donations/{detail?}', 'ProgramController@viewDonations');
 Route::get('/program/pdf/{program?}', 'ProgramController@printPDF');
+Route::get('/program/pdf2/{program?}', 'ProgramController@printPDF2');
 
 /* Barangay */
 Route::get('/barangay', 'BarangayController@getIndex');
@@ -53,6 +55,8 @@ Route::get('/activity', 'ActivityController@getIndex');
 Route::get('/activity/add/{activity?}', 'ActivityController@getIndexAdd');
 Route::post('/activity/add/post', 'ActivityController@save');
 Route::get('/activity/delete/{activity?}', 'ActivityController@delete');
+
+Route::get('/activity/toggle/{id?}', 'ActivityController@getToggleStatus');
 
 Route::get('/activity/sub/{subactivity?}', 'ActivityController@getIndexSubActivity');
 Route::get('/activity/sub/delete/{subactivity?}', 'ActivityController@deleteSubActivity');
