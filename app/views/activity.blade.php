@@ -35,9 +35,9 @@
 							<td class="span6"> {{$v->name}} </td>
 							<td class="span2"> 
 								@if($v->status == 0)
-									Ongoing
+									<a href="{{URL::action('ActivityController@getToggleStatus', ['program' => $v->id])}}" class="btn btn-small btn-warning">Ongoing</a>
 								@else
-									Done
+									<a href="{{URL::action('ActivityController@getToggleStatus', ['program' => $v->id])}}" class="btn btn-small btn-success">Done</a>
 								@endif
 							</td>
 							<td class="td-actions span2">

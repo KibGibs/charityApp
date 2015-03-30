@@ -18,11 +18,11 @@
 			<tbody>
 				@foreach($donations as $key => $v)
 						<tr>
-							<td class="span2"> {{$v->id}} </td>
-							<td class="span2"> {{$v->donation->donor->first_name}} {{$v->donation->donor->last_name}}</td>
-							<td class="span2">PHP {{number_format($v->donation->donated_amount,2)}} </td>
-							<td class="span2"> {{$v->donation->donation_date}} </td>
-							<td class="span2"> {{$v->donation->remarks}} </td>
+							<td class=""> {{$v->id}} </td>
+							<td class=""> {{$v->donation->donor->first_name}} {{$v->donation->donor->last_name}}</td>
+							<td class="">PHP {{number_format($v->donation->donated_amount,2)}} </td>
+							<td class=""> {{$v->donation->donation_date}} </td>
+							<td class=""> {{$v->donation->remarks}} </td>
 						</tr>	
 				@endforeach
 			</tbody>

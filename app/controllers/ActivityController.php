@@ -22,7 +22,6 @@ class ActivityController extends BaseController {
 	
 	public function save(){
 		$name = Input::get('name');
-		$status = Input::get('status');
 		$id = Input::get('id');
 		
 		if($id) {
@@ -31,7 +30,6 @@ class ActivityController extends BaseController {
 			$activity = new Activity;
 		}
 		$activity->name = $name;
-		$activity->status = $status;
 		
 		if($activity->save()) {
 
@@ -46,6 +44,21 @@ class ActivityController extends BaseController {
 
 			return Redirect::action('ActivityController@getIndex')->with('success','Activity Saved!');
 		}
+	}
+
+	public function getToggleStatus($id){
+		$activity = Activity::find($id);
+		
+		if($activity) {
+			if($activity->status == 0) {
+				$activity->status = 1;
+			}else{
+				$activity->status =0;
+			}
+		}
+		$activity->save();
+		return Redirect::action('ActivityController@getIndex');
+
 	}
 	
 	public function delete($id) {

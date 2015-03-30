@@ -19,10 +19,23 @@ class ProgramController extends BaseController {
 		);
 		return View::make('program_add', $data);
 	}
-	
+	public function getToggleStatus($id){
+		$program = Program::find($id);
+		
+		if($program) {
+			if($program->status == 0) {
+				$program->status = 1;
+			}else{
+				$program->status =0;
+			}
+		}
+		$program->save();
+		return Redirect::action('ProgramController@getIndex');
+
+	}
 	public function saveProgram() {
 		$name = Input::get('name');
-		$status = Input::get('status');
+		
 		$id = Input::get('id');
 		if($id) {
 			$program = Program::find($id);
@@ -31,7 +44,6 @@ class ProgramController extends BaseController {
 		}
 		
 		$program->name = $name;
-		$program->status = $status;
 		if($program->save()){
 		
 			$activity_text = 'Added program name: '.$name;
@@ -44,6 +56,8 @@ class ProgramController extends BaseController {
 	
 	public function getProgramDetail($id) {
 		$program_detail = ProgramDetail::where('program_id', $id)->get();
+		$program_get_name = Program::find($id);
+		$program_name = $program_get_name->name;
 		foreach($program_detail as $k=>$v) {
 				$v->program = Program::find($v->program_id);
 				$v->activity_detail = ActivityDetail::find($v->activity_detail_id);
@@ -57,6 +71,7 @@ class ProgramController extends BaseController {
 		$data = array(
 			'id' => $id,
 			'program_detail' => $program_detail,
+			'program_name' => $program_name
 		);
 		return View::make('program_detail', $data);
 	}
@@ -66,7 +81,7 @@ class ProgramController extends BaseController {
 		$data = array(
 			'barangay' => Barangay::all(),
 			'program' => Program::find($id),
-			'activity' => Activity::all(),
+			'activity' => Activity::where('status',0)->get(),
 			'id' => $id,
 		);
 		return View::make('program_detail_add', $data);
@@ -144,6 +159,7 @@ class ProgramController extends BaseController {
 	}
 	
 	public function printPDF($id) {
+		
 		$donation_detail = DonationDetail::where('progam_id', $id)->get();
 		foreach($donation_detail as $k=>$v) {
 			$v->donation = Donation::find($v->donation_id);
@@ -157,5 +173,44 @@ class ProgramController extends BaseController {
 		
 		$pdf = PDF::loadView('pdf.program_donation', $data);
 		return $pdf->stream('pdf.program_donation');
+	}
+
+	public function printPDF2($id) {
+		$donation_detail = DonationDetail::where('progam_id', $id)->get();
+		foreach($donation_detail as $k=>$v) {
+			$v->donation = Donation::find($v->donation_id);
+			$v->donation->donor = User::find($v->donation->user_id);
+		}
+		
+		$data = array(
+			'donations' => $donation_detail,
+			'program' => Program::find($id)
+		);
+		
+		$pdf = PDF::loadView('pdf.program_donation', $data);
+		return $pdf->stream('pdf.program_donation');
+
+
+		// $program_detail = ProgramDetail::where('program_id', $id)->get();
+		// $program_get_name = Program::find($id);
+		// $program_name = $program_get_name->name;
+		// foreach($program_detail as $k=>$v) {
+		// 		$v->program = Program::find($v->program_id);
+		// 		$v->activity_detail = ActivityDetail::find($v->activity_detail_id);
+		// 		$v->activity_detail->activity = Activity::find($v->activity_detail->activity_id);
+		// 		$v->activity_detail->subActivity = SubActivity::find($v->activity_detail->sub_activity_id);
+		// 		$v->start_date = date('F j, Y', strtotime($v->start_date));
+		// 		$v->end_date = date('F j, Y', strtotime($v->end_date));
+				
+		// }
+		
+		// $data = array(
+		// 	'id' => $id,
+		// 	'program_detail' => $program_detail,
+		// 	'program_name' => $program_name
+		// );
+		// return View::make('program_detail', $data);
+
+
 	}
 }

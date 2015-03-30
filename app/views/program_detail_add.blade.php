@@ -54,7 +54,6 @@
 														ng-model="program.subActivity" 
 														ng-options="sac.sub_activity_id.id as sac.sub_activity_id.name for sac in subActivity" >
 														<option value="">-- Select --</option>
-																							
 												</select>
 											</div> <!-- /controls -->				
 										</div> <!-- /control-group -->
