@@ -35,7 +35,7 @@ class DonationController extends BaseController {
 		$donation = new Donation;
 		$donation->donated_amount = $amount;
 		$donation->user_id = Auth::user()->id;
-		$donation->donation_date = $date;
+		$donation->donation_date = date('Y-m-d');
 		$donation->remarks = $remarks;
 		if($donation->save()){
 			return Redirect::action('DonationController@getIndex')->with('success','Donation Added!');
@@ -96,7 +96,7 @@ class DonationController extends BaseController {
 	public function paypalDonate() {
 		
 		$amount = floatval(Input::get('amount'));
-		$date = Input::get('date');
+		$date = date('Y-m-d');
 		$remarks = Input::get('remarks');
 		$data = [
 			'amount' => $amount,

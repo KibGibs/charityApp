@@ -27,14 +27,6 @@
 										<input type="number" step="any" class="span6" name="amount" value="" required>
 									</div> <!-- /controls -->				
 								</div> <!-- /control-group -->
-								
-								<div class="control-group">											
-									<label class="control-label" for="date">Donation Date</label>
-									<div class="controls">
-										<input type="date" class="span6" name="date" value="" required>
-										<p class="help-block">"mm/dd/yyyy" format</p>
-									</div> <!-- /controls -->				
-								</div> <!-- /control-group -->
 
 								<div class="control-group">											
 									<label class="control-label" for="remarks">Remarks</label>
