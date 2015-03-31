@@ -25,6 +25,7 @@
 					<th> ID </th>
 					<th> Name </th>
 					<th> Activtity </th>
+					<th> Barangay </th>
 					<th> Sub Activity </th>
 					<th> Cost </th>
 					<th> Quantity </th>
@@ -41,6 +42,7 @@
 						<td class="span2"> {{$v->id}} </td>
 						<td class="span2"> {{$v->program->name}} </td>
 						<td class="span2"> {{$v->activity_detail->activity->name}} </td>
+						<td>{{$v->barangay_name->name}}</td>
 						<td class="span2"> {{$v->activity_detail->subActivity->name}} </td>
 						<td class="span2">PHP {{ number_format($v->cost, 2) }} </td>
 						<td class="span2"> {{ $v->qty}} </td>

@@ -16,15 +16,15 @@ class CreateDonationDetail extends Migration {
 		{
 			$table->increments('id');
 			$table->integer('donation_id')->unsigned()->nullable();
-			$table->integer('progam_id')->unsigned()->nullable();
+			$table->integer('activity_id')->unsigned()->nullable();
 			$table->timestamps();
 			
 			$table->foreign('donation_id')
 				->references('id')->on('donations')
 				->onDelete('cascade');
 				
-			$table->foreign('progam_id')
-				->references('id')->on('program')
+			$table->foreign('activity_id')
+				->references('id')->on('activity')
 				->onDelete('cascade');
 		});
 	}

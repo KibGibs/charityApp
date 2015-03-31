@@ -51,7 +51,7 @@
 								@endif
 							</td>
 							<td class="td-actions span2">
-								<a href="{{URL::action('DonationController@donationDetail', ['donate' => $v->id])}}" class="btn btn-small btn-info"><i class="btn-icon-only icon-list-alt" data-toggle="tooltip" data-placement="top" title="Program Details"> </i></a>
+								<a href="{{URL::action('DonationController@donationDetail', ['donate' => $v->id])}}" class="btn btn-small btn-info"><i class="btn-icon-only icon-list-alt" data-toggle="tooltip" data-placement="top" title="Donation Details"> </i></a>
 								@if(!Auth::user()->isDonor())
 									@if($v->status == 0)
 										<a href="{{URL::action('DonationController@received', ['donate' => $v->id])}}" class="btn btn-small btn-success"><i class="btn-icon-only  icon-check" data-toggle="tooltip" data-placement="top" title="Donation Recieved"> </i></a>

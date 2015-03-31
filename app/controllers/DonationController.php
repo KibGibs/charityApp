@@ -45,11 +45,11 @@ class DonationController extends BaseController {
 	public function donationDetail($id) {
 		$donation = DonationDetail::where('donation_id', $id)->get();
 		foreach($donation as $k=>$v) {
-			$v->program = Program::find($v->progam_id);
+			$v->activity = Activity::find($v->activity_id);
 		}
 		
 		$data = array(
-			'program' => Program::all(),
+			'activity' => Activity::all(),
 			'donation_detail' => $donation,
 			'id' => $id,
 		);
@@ -58,17 +58,17 @@ class DonationController extends BaseController {
 	
 	public function postDonateDetail(){
 		$id = Input::get('id');
-		$program = Input::get('program');
-		$hasDetail = DonationDetail::where('donation_id', $id)->where('progam_id', $program)->get();
+		$activity = Input::get('activity');
+		$hasDetail = DonationDetail::where('donation_id', $id)->where('activity_id', $activity)->get();
 		
 		
 		if($hasDetail->count() > 0) {
-			return Redirect::action('DonationController@donationDetail',['donate'=>$id ])->with('Error','Program Already Added!');
+			return Redirect::action('DonationController@donationDetail',['donate'=>$id ])->with('Error','Activity Already Added!');
 		}else{
 		
 			$donation_detail = new DonationDetail;
 			$donation_detail->donation_id = $id;
-			$donation_detail->progam_id = $program;
+			$donation_detail->activity_id = $activity;
 			if($donation_detail->save()){
 				return Redirect::action('DonationController@donationDetail',['donate'=>$id ])->with('success','Donation Detail Added!');
 			}

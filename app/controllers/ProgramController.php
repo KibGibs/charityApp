@@ -63,6 +63,7 @@ class ProgramController extends BaseController {
 				$v->activity_detail = ActivityDetail::find($v->activity_detail_id);
 				$v->activity_detail->activity = Activity::find($v->activity_detail->activity_id);
 				$v->activity_detail->subActivity = SubActivity::find($v->activity_detail->sub_activity_id);
+				$v->barangay_name = Barangay::find($v->barangay_id);
 				$v->start_date = date('F j, Y', strtotime($v->start_date));
 				$v->end_date = date('F j, Y', strtotime($v->end_date));
 				
@@ -108,7 +109,7 @@ class ProgramController extends BaseController {
 		$activity_detail = ActivityDetail::where('activity_id',$activity)->where('sub_activity_id', $subActivity)->first();
 		
 		if($activity_detail) {
-			$hasProgram = ProgramDetail::where('program_id', $program)->where('activity_detail_id',$activity_detail->id)->get();
+			$hasProgram = ProgramDetail::where('program_id', $program)->where('activity_detail_id',$activity_detail->id)->where('barangay_id',$barangay)->get();
 			if($hasProgram->count() > 0) {
 				return 'error';
 			}else{
@@ -119,6 +120,7 @@ class ProgramController extends BaseController {
 				$program_detail->end_date = date("Y-m-d", $end);
 				$program_detail->activity_detail_id = $activity_detail->id;
 				$program_detail->qty = $qty;
+				$program_detail->barangay_id = $barangay;
 				$program_detail->save();
 			}
 		}

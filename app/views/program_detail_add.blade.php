@@ -25,7 +25,7 @@
 								<form id="edit-profile" class="form-horizontal" ng-submit="add()">
 									<fieldset>
 										<div class="control-group">											
-											<label class="control-label" for="username">Barangay</label>
+											<label class="control-label" for="barangay">Barangay</label>
 											<div class="controls">
 													<select class="form-control span5"  required
 														ng-model="program.barangay" 

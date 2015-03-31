@@ -16,6 +16,13 @@ Route::get('/login', 'HomeController@login');
 Route::post('/login/post', 'HomeController@doLogin');
 Route::get('/logout', 'HomeController@logout');
 
+/* Reports */
+Route::get('/reports/donor', 'Reports@getDonors');
+Route::get('/reports/donor/{program?}', 'Reports@getDonation');
+Route::get('/reports/program', 'Reports@getProgramReport');
+Route::get('/reports/program/{program?}', 'Reports@getActivity');
+
+
 /* Posting */
 Route::get('/post', 'PostingController@getIndex');
 Route::get('/post/add/{post?}', 'PostingController@postAddIndex');

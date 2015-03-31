@@ -31,10 +31,10 @@
 							<fieldset>
 								<input type="hidden" value="{{$id}}" name="id">
 								<div class="control-group">											
-									<label class="control-label" for="program">Program</label>
+									<label class="control-label" for="activity">Activity</label>
 									<div class="controls">
-										<select name="program" id="">
-											@foreach($program as $k=>$v)
+										<select name="activity" id="">
+											@foreach($activity as $k=>$v)
 												<option value="{{ $v->id }}">{{ $v->name }}</option>
 											@endforeach
 										</select>
@@ -54,7 +54,7 @@
 							<thead>
 								<tr>
 									<th> ID </th>
-									<th> Program </th>
+									<th> Activity </th>
 									<th class="td-actions">Action</th>
 								</tr>
 							</thead>
@@ -63,7 +63,7 @@
 								@foreach($donation_detail as $key => $v)
 									<tr>
 										<td class="span2"> {{$v->id}} </td>
-										<td class="span8"> {{$v->program->name}} </td>
+										<td class="span8"> {{$v->activity->name}} </td>
 										<td class="td-actions span2">
 											<a href="{{ URL::action('DonationController@deleteDetail', ['donate' => $id, 'detail' => $v->id ]) }}" class="btn btn-danger btn-small" data-toggle="tooltip" data-placement="top" title="Delete"><i class="btn-icon-only icon-remove"> </i></a>
 										</td>
