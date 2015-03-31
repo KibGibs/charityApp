@@ -14,8 +14,8 @@
 			<thead>
 				<tr>
 					<th> Program </th>
-					<th> Amount Total </th>
 					<th> Status </th>
+					<th> Amount Total </th>
 				</tr>
 			</thead>
 			<tbody>
@@ -23,7 +23,14 @@
 				@foreach($results as $key => $v)
 					<tr>
 						<td class="span2"><a href="{{URL::action('Reports@getActivity', ['program' => $v->id])}}" >{{$v->name}}</a></td>
-						<td class="span2"> {{$v->status}} </td>
+						<td class="span2"> 
+						@if($v->status == 0)
+						Ongoing
+						@else
+						Done
+						@endif
+
+						</td>
 						<td class="span2 "> PHP {{number_format($v->total,2)}} </td>
 						<?php $grand_total += $v->total; ?>
 					</tr>
