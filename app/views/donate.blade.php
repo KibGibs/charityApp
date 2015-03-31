@@ -24,7 +24,7 @@
 								<div class="control-group">											
 									<label class="control-label" for="amount">Donation Amount</label>
 									<div class="controls">
-										<input type="number" step="any" class="span6" name="amount" value="" required>
+										<input min="1" type="number" step="any" class="span6" name="amount" value="" required>
 									</div> <!-- /controls -->				
 								</div> <!-- /control-group -->
 							
