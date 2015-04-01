@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 31, 2015 at 03:02 AM
+-- Generation Time: Apr 01, 2015 at 02:56 AM
 -- Server version: 5.6.21
--- PHP Version: 5.6.3
+-- PHP Version: 5.5.19
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `charity_app`
+-- Database: `charity`
 --
 
 -- --------------------------------------------------------
@@ -39,8 +39,8 @@ CREATE TABLE IF NOT EXISTS `activity` (
 --
 
 INSERT INTO `activity` (`id`, `name`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'Fingerling Dispersal', 0, '2015-03-30 09:35:12', '2015-03-30 09:35:12'),
-(2, 'Information Education Campaign', 0, '2015-03-30 15:46:59', '2015-03-30 15:46:59');
+(1, 'Activity 1', 0, '2015-03-30 19:39:21', '2015-03-30 19:39:21'),
+(2, 'Activity 2', 0, '2015-03-30 19:39:25', '2015-03-30 19:39:25');
 
 -- --------------------------------------------------------
 
@@ -61,10 +61,10 @@ CREATE TABLE IF NOT EXISTS `activity_detail` (
 --
 
 INSERT INTO `activity_detail` (`id`, `activity_id`, `sub_activity_id`, `created_at`, `updated_at`) VALUES
-(1, 1, 1, '2015-03-30 09:35:46', '2015-03-30 09:35:46'),
-(2, 1, 2, '2015-03-30 09:35:48', '2015-03-30 09:35:48'),
-(3, 2, 3, '2015-03-30 15:47:48', '2015-03-30 15:47:48'),
-(4, 2, 4, '2015-03-30 15:47:51', '2015-03-30 15:47:51');
+(1, 1, 1, '2015-03-30 19:40:36', '2015-03-30 19:40:36'),
+(2, 1, 2, '2015-03-30 19:40:41', '2015-03-30 19:40:41'),
+(3, 2, 1, '2015-03-30 19:40:48', '2015-03-30 19:40:48'),
+(4, 2, 2, '2015-03-30 19:40:51', '2015-03-30 19:40:51');
 
 -- --------------------------------------------------------
 
@@ -85,8 +85,8 @@ CREATE TABLE IF NOT EXISTS `barangay` (
 --
 
 INSERT INTO `barangay` (`id`, `name`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'Barangay 1', 0, '2015-03-30 09:36:18', '2015-03-30 09:36:18'),
-(2, 'Barangay 2', 0, '2015-03-30 09:36:22', '2015-03-30 09:36:22');
+(1, 'Barangay 1', 0, '2015-03-30 19:39:10', '2015-03-30 19:39:10'),
+(2, 'Barangay 2', 0, '2015-03-30 19:39:14', '2015-03-30 19:39:14');
 
 -- --------------------------------------------------------
 
@@ -104,19 +104,17 @@ CREATE TABLE IF NOT EXISTS `donations` (
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `paypal_transaction_id` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `donations`
 --
 
 INSERT INTO `donations` (`id`, `user_id`, `donation_date`, `donated_amount`, `remarks`, `created_at`, `updated_at`, `status`, `paypal_transaction_id`) VALUES
-(3, 1, '2015-03-30', '100', 'wat', '2015-03-30 09:53:36', '2015-03-30 09:55:53', 1, NULL),
-(4, 1, '2015-03-30', '100', 'water', '2015-03-30 09:54:03', '2015-03-30 09:55:55', 1, NULL),
-(5, 2, '2015-03-30', '100', 'wat\r\n', '2015-03-30 10:14:45', '2015-03-30 10:15:02', 1, NULL),
-(6, 2, '2015-03-30', '100', 'same\r\n', '2015-03-30 10:14:52', '2015-03-30 10:15:03', 1, NULL),
-(7, 3, '2015-03-30', '200', 'water\r\n', '2015-03-30 10:22:23', '2015-03-30 10:22:38', 1, NULL),
-(8, 3, '2015-03-30', '500', '123123', '2015-03-30 10:22:56', '2015-03-30 10:22:57', 1, NULL);
+(1, 1, '2015-03-31', '100', 'water', '2015-03-30 19:39:50', '2015-03-30 19:39:51', 1, NULL),
+(2, 1, '2015-03-31', '200', 'water', '2015-03-30 19:39:56', '2015-03-30 19:39:58', 1, NULL),
+(3, 2, '2015-03-31', '100', 'water', '2015-03-30 19:52:02', '2015-03-30 19:52:10', 1, NULL),
+(4, 1, '2015-03-31', '0', '', '2015-03-31 15:42:58', '2015-03-31 15:42:58', 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -130,17 +128,14 @@ CREATE TABLE IF NOT EXISTS `donation_detail` (
   `activity_id` int(10) unsigned DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `donation_detail`
 --
 
 INSERT INTO `donation_detail` (`id`, `donation_id`, `activity_id`, `created_at`, `updated_at`) VALUES
-(4, 3, 1, '2015-03-30 16:44:31', '2015-03-30 16:44:31'),
-(5, 3, 2, '2015-03-30 16:44:33', '2015-03-30 16:44:33'),
-(6, 4, 2, '2015-03-30 16:52:17', '2015-03-30 16:52:17'),
-(7, 4, 1, '2015-03-30 16:52:23', '2015-03-30 16:52:23');
+(1, 1, 1, '2015-03-31 16:08:17', '2015-03-31 16:08:17');
 
 -- --------------------------------------------------------
 
@@ -192,14 +187,7 @@ CREATE TABLE IF NOT EXISTS `posting` (
   `status` smallint(6) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Dumping data for table `posting`
---
-
-INSERT INTO `posting` (`id`, `user_id`, `posting_title`, `posting_data`, `post`, `status`, `created_at`, `updated_at`) VALUES
-(1, 1, 'water', '0000-00-00', 'water', 1, '2015-03-30 09:36:03', '2015-03-30 09:36:03');
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -213,15 +201,14 @@ CREATE TABLE IF NOT EXISTS `program` (
   `status` tinyint(1) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `program`
 --
 
 INSERT INTO `program` (`id`, `name`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'Aquaculture', 0, '2015-03-30 09:35:00', '2015-03-30 09:35:00'),
-(2, 'Community Development ', 0, '2015-03-30 15:46:49', '2015-03-30 15:46:49');
+(1, 'Program 1', 0, '2015-03-30 19:38:24', '2015-03-30 19:38:59');
 
 -- --------------------------------------------------------
 
@@ -240,20 +227,16 @@ CREATE TABLE IF NOT EXISTS `program_detail` (
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `activity_detail_id` int(10) unsigned NOT NULL,
   `barangay_id` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `program_detail`
 --
 
 INSERT INTO `program_detail` (`id`, `program_id`, `cost`, `qty`, `start_date`, `end_date`, `created_at`, `updated_at`, `activity_detail_id`, `barangay_id`) VALUES
-(1, 1, '100.0000', 15, '2015-03-31', '2015-03-31', '2015-03-30 09:37:18', '2015-03-30 09:37:18', 1, 1),
-(2, 1, '100.0000', 12, '2015-03-31', '2015-03-31', '2015-03-30 15:46:02', '2015-03-30 15:46:02', 2, 1),
-(3, 2, '100.0000', 10, '2015-03-31', '2015-03-31', '2015-03-30 15:48:29', '2015-03-30 15:48:29', 3, 1),
-(4, 2, '100.0000', 12, '2015-03-31', '2015-03-31', '2015-03-30 15:48:43', '2015-03-30 15:48:43', 4, 2),
-(5, 2, '100.0000', 12, '2015-03-31', '2015-03-31', '2015-03-30 15:49:17', '2015-03-30 15:49:17', 4, 1),
-(6, 1, '300.0000', 19, '2015-03-31', '2015-03-31', '2015-03-30 16:18:38', '2015-03-30 16:18:38', 1, 2),
-(7, 1, '100.0000', 20, '2015-03-31', '2015-03-31', '2015-03-30 16:35:07', '2015-03-30 16:35:07', 3, 1);
+(1, 1, '100.0000', 1, '2015-02-27', '2015-03-31', '2015-03-30 19:41:06', '2015-03-30 19:41:06', 4, 1),
+(2, 1, '100.0000', 1, '2015-03-31', '2015-03-31', '2015-03-30 19:41:10', '2015-03-30 19:41:10', 4, 2),
+(3, 1, '1.0000', 1, '2015-04-01', '2015-04-01', '2015-03-31 16:01:05', '2015-03-31 16:01:05', 3, 1);
 
 -- --------------------------------------------------------
 
@@ -267,17 +250,15 @@ CREATE TABLE IF NOT EXISTS `sub_activity` (
   `status` tinyint(1) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `sub_activity`
 --
 
 INSERT INTO `sub_activity` (`id`, `name`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'Fisherman orientation ', 0, '2015-03-30 09:35:32', '2015-03-30 09:35:32'),
-(2, 'Snacks', 0, '2015-03-30 09:35:40', '2015-03-30 09:35:55'),
-(3, 'Education Blah Blah', 0, '2015-03-30 15:47:30', '2015-03-30 15:47:30'),
-(4, 'Something2x', 0, '2015-03-30 15:47:42', '2015-03-30 15:47:42');
+(1, 'Snacks', 0, '2015-03-30 19:39:33', '2015-03-30 19:39:33'),
+(2, 'Something2x', 0, '2015-03-30 19:39:43', '2015-03-30 19:39:43');
 
 -- --------------------------------------------------------
 
@@ -304,9 +285,9 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`id`, `password`, `first_name`, `last_name`, `status`, `user_type`, `created_at`, `updated_at`, `username`, `remember_token`, `email`) VALUES
-(1, '$2y$10$1WWVGEnPcMuByRDk8vseOOuagMVFTb4sZz0y5ss1TQ1HABdfZ8JgG', 'admin', 'admin', 0, 'admin', '2015-03-30 09:33:57', '2015-03-30 10:22:44', 'admin', 'leptMbX4qgeI6tlyZzyc61R8Bva2vJltch032o5aNrP6yddXt4g4kGYc4aat', ''),
-(2, '$2y$10$g5mfRBPwSOtqgSmMVgKSs.u771mPU1LUWpUIRu5t6//vDS8AbZ.G2', 'donor', 'donor', 0, 'donor', '2015-03-30 09:34:34', '2015-03-30 10:14:55', 'donor', 'ftmmGkHFHVuTeS8ANjat5jekd0laj5AGoIax3OhwYlDHZPR9OTgjPXPVmR59', 'donor1@gmail.com'),
-(3, '$2y$10$ad2Ly1rHvclmcKfYjZTv/Oli4OwSBKWPIaM6Lr/FB1pCjB54.A2Ry', 'staff', 'staff', 0, 'staff', '2015-03-30 09:34:45', '2015-03-30 10:22:59', 'staff', 'oPX00oNp21m7ck0rNR8JFg9dS6b8YGz8B2S084q1aGZdnIVA9UK79FSGDuHS', 'staff@email.com');
+(1, '$2y$10$1j1NPh22lSNojA1VS8KO4OiV.fDYZcwZubQTjx7G.uBidjzb3b9bW', 'admin', 'admin', 0, 'admin', '2015-03-30 19:37:07', '2015-03-30 19:51:46', 'admin', 'jMyFPHEwUsiYKESiS9kR5WFxjDSj6AAzV9EBWmcOEFp5XO8EqowjQTnUlb6G', ''),
+(2, '$2y$10$npQpSWTjPhDgW9Pd1swwtOVDIYfLUsJ.kwWpWW19rcesOWVMUdrcC', 'donor', 'donor', 0, 'donor', '2015-03-30 19:37:55', '2015-03-30 19:52:05', 'donor', 'w4PiScspC3p1p3M2pSB6QTLiL0qlKKnWbhUqgbdDf6Iguqw67fN45uJZaJev', 'donor@gmail.com'),
+(3, '$2y$10$sdTjVDt8ADwvfyttv1.RUOgYSwkQFPEMJ5kby5QF3kFnLKTzIpfSK', 'staff', 'staff', 0, 'staff', '2015-03-30 19:38:07', '2015-03-30 19:38:07', 'staff', NULL, 'staff@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -320,31 +301,26 @@ CREATE TABLE IF NOT EXISTS `user_activity_log` (
   `activity` text COLLATE utf8_unicode_ci NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `user_activity_log`
 --
 
 INSERT INTO `user_activity_log` (`id`, `user_id`, `activity`, `created_at`, `updated_at`) VALUES
-(1, 1, 'Added user username: donor', '2015-03-30 09:34:34', '2015-03-30 09:34:34'),
-(2, 1, 'Added user username: staff', '2015-03-30 09:34:45', '2015-03-30 09:34:45'),
-(3, 1, 'Added program name: Aquaculture', '2015-03-30 09:35:00', '2015-03-30 09:35:00'),
-(4, 1, 'Added activity name: Fingerling Dispersal', '2015-03-30 09:35:12', '2015-03-30 09:35:12'),
-(5, 1, 'Added sub activity name: Fisherman orientation ', '2015-03-30 09:35:32', '2015-03-30 09:35:32'),
-(6, 1, 'Added sub activity name: SnacksS', '2015-03-30 09:35:40', '2015-03-30 09:35:40'),
-(7, 1, 'Added sub activity name: Fisherman orientation  on activity name: Fingerling Dispersal', '2015-03-30 09:35:46', '2015-03-30 09:35:46'),
-(8, 1, 'Added sub activity name: SnacksS on activity name: Fingerling Dispersal', '2015-03-30 09:35:48', '2015-03-30 09:35:48'),
-(9, 1, 'Edited sub activity name: Snacks', '2015-03-30 09:35:55', '2015-03-30 09:35:55'),
-(10, 1, 'Added post title: water', '2015-03-30 09:36:03', '2015-03-30 09:36:03'),
-(11, 1, 'Added barangay name: Barangay 1', '2015-03-30 09:36:18', '2015-03-30 09:36:18'),
-(12, 1, 'Added barangay name: Barangay 2', '2015-03-30 09:36:22', '2015-03-30 09:36:22'),
-(13, 1, 'Added program name: Community Development ', '2015-03-30 15:46:49', '2015-03-30 15:46:49'),
-(14, 1, 'Added activity name: Information Education Campaign', '2015-03-30 15:46:59', '2015-03-30 15:46:59'),
-(15, 1, 'Added sub activity name: Education Blah Blah', '2015-03-30 15:47:30', '2015-03-30 15:47:30'),
-(16, 1, 'Added sub activity name: Something2x', '2015-03-30 15:47:42', '2015-03-30 15:47:42'),
-(17, 1, 'Added sub activity name: Education Blah Blah on activity name: Information Education Campaign', '2015-03-30 15:47:48', '2015-03-30 15:47:48'),
-(18, 1, 'Added sub activity name: Something2x on activity name: Information Education Campaign', '2015-03-30 15:47:51', '2015-03-30 15:47:51');
+(1, 1, 'Added user username: donor', '2015-03-30 19:37:55', '2015-03-30 19:37:55'),
+(2, 1, 'Added user username: staff', '2015-03-30 19:38:08', '2015-03-30 19:38:08'),
+(3, 1, 'Added program name: Program 1', '2015-03-30 19:38:25', '2015-03-30 19:38:25'),
+(4, 1, 'Added barangay name: Barangay 1', '2015-03-30 19:39:10', '2015-03-30 19:39:10'),
+(5, 1, 'Added barangay name: Barangay 2', '2015-03-30 19:39:14', '2015-03-30 19:39:14'),
+(6, 1, 'Added activity name: Activity 1', '2015-03-30 19:39:21', '2015-03-30 19:39:21'),
+(7, 1, 'Added activity name: Activity 2', '2015-03-30 19:39:25', '2015-03-30 19:39:25'),
+(8, 1, 'Added sub activity name: Snacks', '2015-03-30 19:39:33', '2015-03-30 19:39:33'),
+(9, 1, 'Added sub activity name: Something2x', '2015-03-30 19:39:43', '2015-03-30 19:39:43'),
+(10, 1, 'Added sub activity name: Snacks on activity name: Activity 1', '2015-03-30 19:40:36', '2015-03-30 19:40:36'),
+(11, 1, 'Added sub activity name: Something2x on activity name: Activity 1', '2015-03-30 19:40:41', '2015-03-30 19:40:41'),
+(12, 1, 'Added sub activity name: Snacks on activity name: Activity 2', '2015-03-30 19:40:48', '2015-03-30 19:40:48'),
+(13, 1, 'Added sub activity name: Something2x on activity name: Activity 2', '2015-03-30 19:40:51', '2015-03-30 19:40:51');
 
 --
 -- Indexes for dumped tables
@@ -439,32 +415,32 @@ MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 -- AUTO_INCREMENT for table `donations`
 --
 ALTER TABLE `donations`
-MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `donation_detail`
 --
 ALTER TABLE `donation_detail`
-MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `posting`
 --
 ALTER TABLE `posting`
-MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `program`
 --
 ALTER TABLE `program`
-MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `program_detail`
 --
 ALTER TABLE `program_detail`
-MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `sub_activity`
 --
 ALTER TABLE `sub_activity`
-MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `users`
 --
@@ -474,7 +450,7 @@ MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 -- AUTO_INCREMENT for table `user_activity_log`
 --
 ALTER TABLE `user_activity_log`
-MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=19;
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14;
 --
 -- Constraints for dumped tables
 --

@@ -20,7 +20,9 @@ Route::get('/logout', 'HomeController@logout');
 Route::get('/reports/donor', 'Reports@getDonors');
 Route::get('/reports/donor/{program?}', 'Reports@getDonation');
 Route::get('/reports/program', 'Reports@getProgramReport');
+Route::get('/reports/program_summary', 'Reports@getProgramSummary');
 Route::get('/reports/program/{program?}', 'Reports@getActivity');
+Route::get('/reports/summary/{program?}', 'Reports@getSummary');
 
 
 /* Posting */

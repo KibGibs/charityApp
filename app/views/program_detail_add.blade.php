@@ -74,14 +74,14 @@
 										<div class="control-group">											
 											<label class="control-label" for="firstname">Cost</label>										
 											<div class="controls">
-												<input class="span6" value="" type="text" style="height: 30px; " ng-model="program.cost" required>
+												<input min="1" class="span6" value="" type="number" style="height: 30px; " ng-model="program.cost" required>
 											</div> <!-- /controls -->
 										</div>
 										
 											<div class="control-group">											
 											<label class="control-label" for="firstname">Quantity</label>										
 											<div class="controls">
-												<input class="span6" value="" type="text" style="height: 30px; " ng-model="program.qty" required>
+												<input min="1" class="span6" value="" type="number" style="height: 30px; " ng-model="program.qty" required>
 											</div> <!-- /controls -->
 										</div>
 

@@ -102,6 +102,7 @@
           <ul class="dropdown-menu">
             <li><a href="{{URL::action('Reports@getDonors')}}">Donors</a></li>
             <li><a href="{{URL::action('Reports@getProgramReport')}}">Program</a></li>
+            <li><a href="{{URL::action('Reports@getProgramSummary')}}">Program Summary</a></li>
           </ul>
         </li>
         @endif

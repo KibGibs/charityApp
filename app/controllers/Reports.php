@@ -44,4 +44,38 @@ GROUP BY name");
 
 	}
 
+	public function getProgramSummary(){
+		$data = array(
+			'program' => Program::paginate(10),
+		);
+
+		return View::make('reports.program_summary',$data);
+	}
+
+	public function getSummary($id = null){
+		$data['name'] = Program::find($id);
+
+		$data['activity'] =DB::select("SELECT (SELECT a.name FROM activity a WHERE b.activity_id = a.id) name
+FROM activity_detail b, program_detail c
+WHERE c.activity_detail_id = b.id
+AND c.program_id = ".$id."
+GROUP by name");
+
+		$data['barangay'] = DB::select("SELECT a.name FROM barangay a, program_detail b
+WHERE a.id = b.barangay_id AND b.program_id = ".$id."
+GROUP BY a.name");
+
+		$data['total'] = DB::select("SELECT SUM(cost) total FROM program_detail WHERE program_id = ".$id);
+
+		$data['sub_activity'] = DB::select("SELECT (SELECT a.name FROM sub_activity a WHERE b.sub_activity_id = a.id) name,
+c.qty,c.cost,c.start_date,c.end_date
+FROM activity_detail b, program_detail c
+WHERE c.activity_detail_id = b.id
+AND c.program_id =".$id);
+
+		$data['min_date'] = DB::select("SELECT min(start_date) min_date FROM program_detail WHERE program_id = ".$id);
+		$data['max_date'] = DB::select("SELECT max(end_date) max_date FROM program_detail WHERE program_id = ".$id);
+		return View::make('reports.summary',$data);
+	}
+
 }
