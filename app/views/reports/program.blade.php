@@ -22,7 +22,7 @@
 				<?php $grand_total = 0; ?>
 				@foreach($results as $key => $v)
 					<tr>
-						<td class="span2"><a href="{{URL::action('Reports@getActivity', ['program' => $v->id])}}" >{{$v->name}}</a></td>
+						<td class="span2"><a href="{{URL::action('Reports@getActivity', ['program' => $v->program_id])}}" >{{$v->program->name}}</a></td>
 						<td class="span2"> 
 						@if($v->status == 0)
 						Ongoing
@@ -41,7 +41,7 @@
 					</tr>
 			</tbody>
 		</table>
-
+		{{$results->links()}}
 	</div>
 </div>
 @stop
