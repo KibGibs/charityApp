@@ -16,7 +16,9 @@
 			</thead>
 			<tbody>
 				@foreach($program as $k => $v)
-					<td><a href="{{URL::action('Reports@getSummary', ['program' => $v->id])}}" >{{$v->name}}</a></td>
+					<tr>
+						<td><a href="{{URL::action('Reports@getSummary', ['program' => $v->id])}}" >{{$v->name}}</a></td>
+						</tr>
 				@endforeach
 			</tbody>
 		</table>

@@ -5,11 +5,26 @@ class Reports extends \BaseController {
 
 	public function getDonors()
 	{
-		$data['results'] = DB::select('SELECT COUNT(1) count,SUM(b.donated_amount) total,a.first_name, a.last_name,a.id
+		/* $data['results'] = DB::select('SELECT COUNT(1) count,SUM(b.donated_amount) total,a.first_name, a.last_name,a.id
 					FROM users a, donations b 
 					WHERE a.id = b.user_id AND b.status = 1
-                    GROUP BY a.id');
-
+                    GROUP BY a.id'); */
+						
+		$donors = DB::table('users')
+					->select(array('donations.*', DB::raw('COUNT(users.id) as count')))
+					->addSelect(array('donations.*', DB::raw('SUM(donations.donated_amount) as total')))
+					->join('donations', 'users.id', '=', 'donations.user_id')
+					->groupBy('users.id')
+					->paginate(1);
+		
+		foreach($donors as $k=>$v) {
+			$v->user = User::find($v->user_id);
+		}
+		
+		$data = array(
+			'results' => $donors,
+		); 
+		
 		return View::make('reports.donors',$data);
 	}
 

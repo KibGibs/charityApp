@@ -19,12 +19,12 @@
 				</tr>
 			</thead>
 			<tbody>
-			<?php $grand_total = 0; ?>
+				<?php $grand_total = 0; ?>
 				@foreach($results as $key => $v)
 					<tr>
-						<td class="span2"><a href="{{URL::action('Reports@getDonation', ['program' => $v->id])}}" > {{$v->last_name}}, {{$v->first_name}}</a> </td>
+						<td class="span2"><a href="{{URL::action('Reports@getDonation', ['program' => $v->id])}}" > {{$v->user->last_name}}, {{$v->user->first_name}}</a> </td>
 						<td class="span2"> {{$v->count}} </td>
-						<td class="span2 "> PHP {{number_format($v->total,2)}} </td>
+						<td class="span2">PHP {{number_format($v->total,2)}} </td>
 						<?php $grand_total += $v->total; ?>
 					</tr>
 				@endforeach
@@ -32,9 +32,10 @@
 						<td class="span2" colspan="2" style="text-align:right;">Total: </td>
 						<td> PHP {{number_format($grand_total,2)}}</td>
 					</tr>
+
 			</tbody>
 		</table>
-
+		{{$results->links()}}
 	</div>
 </div>
 @stop

@@ -6,8 +6,15 @@ var app = angular.module('app')
 	$scope.subActivity = [];
 	
 	$scope.selectedActivity = function(id) {
+		$scope.loading = true;
+		$scope.subActivity = [];
+		if(typeof $scope.program.subActivity !== 'undefined') {
+			delete $scope.program.subActivity;
+		}
+		
 		$http.get(vars.get_sub_activity_url.replace(':id:', id)).success(function(data) {
 			$scope.subActivity = data;
+			$scope.loading = false;
 		});
 	}
 	//Datepicker
