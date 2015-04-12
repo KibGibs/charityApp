@@ -54,7 +54,7 @@
 														ng-model="program.subActivity" 
 														ng-options="sac.sub_activity_id.id as sac.sub_activity_id.name for sac in subActivity" 
 														ng-disabled="loading">
-														<option value="">@{{loadingCounty?'Loading...':'-- Select --'}}</option>
+														<option value="">@{{loading?'Loading...':'-- Select --'}}</option>
 												</select>
 											</div> <!-- /controls -->				
 										</div> <!-- /control-group -->

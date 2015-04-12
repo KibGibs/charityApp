@@ -87,3 +87,4 @@ Route::get('/donation/received/{donate?}', 'DonationController@received');
 Route::get('/donation/donate/delete/{donate?}/{detail?}', 'DonationController@deleteDetail');
 Route::post('/donate/post/detail', 'DonationController@postDonateDetail');
 Route::post('/donate/post', 'DonationController@postDonate');
+Route::get('/donate/activity/{program?}', 'DonationController@getActivity');

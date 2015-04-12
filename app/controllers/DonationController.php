@@ -22,7 +22,7 @@ class DonationController extends BaseController {
 	
 	public function donate() {
 		$data = array(
-			'program' => Program::all(),
+			'programs' => Program::all(),
 		);
 		return View::make('donate', $data);
 	}
@@ -31,14 +31,19 @@ class DonationController extends BaseController {
 		$amount = Input::get('amount');
 		$date = Input::get('date');
 		$remarks = Input::get('remarks');
-
+		$program = Input::get('program');
+		$activity = Input::get('activity');
 		$donation = new Donation;
 		$donation->donated_amount = $amount;
+		$donation->program_id = $program;
+		$donation->activity_id = $activity;
 		$donation->user_id = Auth::user()->id;
 		$donation->donation_date = date('Y-m-d');
 		$donation->remarks = $remarks;
 		if($donation->save()){
-			return Redirect::action('DonationController@getIndex')->with('success','Donation Added!');
+			
+		}else{
+			return 'error';
 		}
 	}
 	
@@ -172,6 +177,27 @@ class DonationController extends BaseController {
 		}
 		$donation->save();
 		return Redirect::action('DonationController@getIndex')->with('success','Donation Received');
+	}
+
+	public function getActivity($program) {
+
+		$program_detail = ProgramDetail::where('program_id',$program)->get();
+		$activityArray = array();
+
+		foreach($program_detail as $k=>$v) {
+			$getActivity = ActivityDetail::where('id',$v->activity_detail_id)->get();
+			foreach($getActivity as $k=>$v) {
+				array_push($activityArray, $v->activity_id);
+			}
+			
+		}
+		$data = array_unique($activityArray);
+		$dataArray = array();
+		foreach($data as $k=>$v){
+			$get = Activity::find($v);
+			array_push($dataArray, $get);
+		}
+		return json_encode($dataArray);
 	}
 
 
