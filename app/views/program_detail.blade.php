@@ -19,6 +19,11 @@
 	  	</div> <!-- /widget-header -->
 		
 		<div class="widget-content">
+		<div class="progress">
+		  <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="1" aria-valuemin="0" aria-valuemax="100" style="width: {{$percent}}%">
+		    <span class="sr-only">{{$percent}}%</span>
+		  </div>
+		</div>
 		<table class="table table-striped table-bordered">
 			<thead>
 				<tr>
@@ -39,17 +44,17 @@
 			<tbody>
 			@foreach($program_detail as $key => $v)
 					<tr>
-						<td class="span2"> {{$v->id}} </td>
-						<td class="span2"> {{$v->program->name}} </td>
-						<td class="span2"> {{$v->activity_detail->activity->name}} </td>
-						<td>{{$v->barangay_name->name}}</td>
-						<td class="span2"> {{$v->activity_detail->subActivity->name}} </td>
-						<td class="span2">PHP {{ number_format($v->cost, 2) }} </td>
-						<td class="span2"> {{ $v->qty}} </td>
-						<td class="span2"> {{$v->start_date}} </td>
-						<td class="span2"> {{$v->end_date}} </td>
+						<td class="span2 @if($v->done) {{'done'}} @endif"> {{$v->id}}</td>
+						<td class="span2 @if($v->done) {{'done'}} @endif"> {{$v->program->name}} </td>
+						<td class="span2 @if($v->done) {{'done'}} @endif"> {{$v->activity_detail->activity->name}} </td>
+						<td class="@if($v->done) {{'done'}} @endif">{{$v->barangay_name->name}}</td>
+						<td class="span2 @if($v->done) {{'done'}} @endif"> {{$v->activity_detail->subActivity->name}} </td>
+						<td class="span2 @if($v->done) {{'done'}} @endif">PHP {{ number_format($v->cost, 2) }} </td>
+						<td class="span2 @if($v->done) {{'done'}} @endif"> {{ $v->qty}} </td>
+						<td class="span2 @if($v->done) {{'done'}} @endif"> {{$v->start_date}} </td>
+						<td class="span2 @if($v->done) {{'done'}} @endif"> {{$v->end_date}} </td>
 						@if(!Auth::user()->isDonor())
-						<td class="td-actions span2">
+						<td class="td-actions span2 @if($v->done) {{'done'}} @endif">
 							<a href="{{ URL::action('ProgramController@deleteDetail', ['program'=>$id,'detail' => $v->id ]) }}" class="btn btn-danger btn-small" data-toggle="tooltip" data-placement="top" title="Delete"><i class="btn-icon-only icon-remove"> </i></a>
 						</td>
 						@endif

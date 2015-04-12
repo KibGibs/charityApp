@@ -58,6 +58,7 @@ class ProgramController extends BaseController {
 		$program_detail = ProgramDetail::where('program_id', $id)->get();
 		$program_get_name = Program::find($id);
 		$program_name = $program_get_name->name;
+
 		foreach($program_detail as $k=>$v) {
 				$v->program = Program::find($v->program_id);
 				$v->activity_detail = ActivityDetail::find($v->activity_detail_id);
@@ -66,13 +67,31 @@ class ProgramController extends BaseController {
 				$v->barangay_name = Barangay::find($v->barangay_id);
 				$v->start_date = date('F j, Y', strtotime($v->start_date));
 				$v->end_date = date('F j, Y', strtotime($v->end_date));
-				
+					$now = \Carbon\Carbon::now();
+					$end_date = \Carbon\Carbon::createFromTimeStamp(strtotime($v->end_date));	
+				$v->done = $now->gt($end_date);	
 		}
+
+		// Carbon::setTestNow($knownDate); 
+		$done = 0;
+		$progress = ProgramDetail::where('program_id', $id)->get();
+		foreach($progress as $k=>$v) {
+			$now = \Carbon\Carbon::now();
+			$end_date = \Carbon\Carbon::createFromTimeStamp(strtotime($v->end_date));
+			if($now->gt($end_date)){
+				$done += 1;
+			}
+			
+		}
+
+		$total = $progress->count() ? $progress->count() : 1;
+		$percent = ($done / $total ) * 100;
 		
 		$data = array(
 			'id' => $id,
 			'program_detail' => $program_detail,
-			'program_name' => $program_name
+			'program_name' => $program_name,
+			'percent' => number_format($percent,2)
 		);
 		return View::make('program_detail', $data);
 	}

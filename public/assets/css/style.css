@@ -1269,8 +1269,13 @@ color: #333;
 }
 
 
+.sr-only {
+	  position: relative !important;
+}
 
-
+.table-striped tbody tr td.done {
+	background-color: #C0D8C0 !important;
+}
 
 
 /*------------------------------------------------------------------
