@@ -70,9 +70,18 @@ class Reports extends \BaseController {
 
 		$data['name'] = User::find($id);
 
-		$data['results'] = DB::select("SELECT (SELECT a.name FROM activity a WHERE a.id = b.activity_id) name, COUNT(1) count
-		FROM donation_detail b, donations c WHERE b.donation_id = c.id AND c.user_id = ".$id."
-		GROUP BY name");
+		$data['results'] =DB::select("
+			SELECT b.name act_name, a.name prog_name, c.donation_date, c.donated_amount, c.remarks, c.status, c.paypal_transaction_id
+			FROM program a, activity b, donations c
+			WHERE c.user_id = ".$id."
+			AND c.activity_id = b.id
+			AND c.program_id = a.id
+			");
+
+		// dd($data['results']);
+		// $data['results'] = DB::select("SELECT (SELECT a.name FROM activity a WHERE a.id = b.activity_id) name, COUNT(1) count
+		// FROM donation_detail b, donations c WHERE b.donation_id = c.id AND c.user_id = ".$id."
+		// GROUP BY name");
 
 		return View::make('reports.donation',$data);
 

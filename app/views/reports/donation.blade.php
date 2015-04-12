@@ -13,16 +13,22 @@
 		<table class="table table-striped table-bordered">
 			<thead>
 				<tr>
+					<th>Donation Date</th>
+					<th> Program Name </th>
 					<th> Activity Name </th>
-					<th> Count </th>
+					<th> Amount </th>
+					<th> Remarks </th>
 				</tr>
 			</thead>
 			<tbody>
 
 				@foreach($results as $key => $v)
 					<tr>
-						<td>{{$v->name}}</td>
-						<td>{{$v->count}}</td>
+						<td>{{date("M d, Y", strtotime($v->donation_date))}}</td>
+						<td>{{$v->prog_name}}</td>
+						<td>{{$v->act_name}}</td>
+						<td>{{number_format($v->donated_amount,2)}}</td>
+						<td>{{$v->remarks}}</td>
 					</tr>
 				@endforeach
 

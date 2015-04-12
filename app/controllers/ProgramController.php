@@ -4,10 +4,25 @@ class ProgramController extends BaseController {
 
 
 	public function getIndex(){
+
+		// $progress = ProgramDetail::where('program_id', $id)->get();
+		
+		// foreach($progress as $k=>$v) {
+		// 	$now = \Carbon\Carbon::now();
+		// 	$end_date = \Carbon\Carbon::createFromTimeStamp(strtotime($v->end_date));
+		// 	if($now->gt($end_date)){
+		// 		$done += 1;
+		// 	}
+			
+		// }
+
+		// $total = $progress->count() ? $progress->count() : 1;
+		// $percent = ($done / $total ) * 100;
 	
 		$data = array(
-			'program' => Program::paginate(10),
+			'program' => Program::paginate(10)
 		);
+
 		return View::make('program', $data);
 	}
 	
@@ -75,6 +90,7 @@ class ProgramController extends BaseController {
 		// Carbon::setTestNow($knownDate); 
 		$done = 0;
 		$progress = ProgramDetail::where('program_id', $id)->get();
+
 		foreach($progress as $k=>$v) {
 			$now = \Carbon\Carbon::now();
 			$end_date = \Carbon\Carbon::createFromTimeStamp(strtotime($v->end_date));
