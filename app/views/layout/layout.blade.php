@@ -6,11 +6,11 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<link href="{{asset('bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
 <link href="{{asset('assets/css/bootstrap.min.css')}}" rel="stylesheet">
 <link href="{{asset('assets/css/bootstrap-responsive.min.css')}}" rel="stylesheet">
-<!-- <link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600"
-        rel="stylesheet"> -->
+
+<link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600"
+        rel="stylesheet">
 <link href="{{asset('assets/css/font-awesome.css')}}" rel="stylesheet">
 <link href="{{asset('assets/css/style.css')}}" rel="stylesheet">
 <link href="{{asset('assets/css/pages/dashboard.css')}}" rel="stylesheet">
@@ -71,28 +71,28 @@
         </li>
         @endif
 
-		 <li class="@if(Request::is('program*')){{'active'}}@endif">
+     <li class="@if(Request::is('program*')){{'active'}}@endif">
           <a href="{{URL::action('ProgramController@getIndex')}}">
             <i class="icon-calendar"></i><span>Program</span> 
           </a> 
         </li>
 
-		 <li class="@if(Request::is('barangay*')){{'active'}}@endif">
+     <li class="@if(Request::is('barangay*')){{'active'}}@endif">
           <a href="{{URL::action('BarangayController@getIndex')}}">
             <i class="icon-globe"></i><span>Barangay</span> 
           </a> 
         </li> 
-		<li class="@if(Request::is('activity*')){{'active'}}@endif">
+    <li class="@if(Request::is('activity*')){{'active'}}@endif">
           <a href="{{URL::action('ActivityController@getIndex')}}">
             <i class="icon-tasks"></i><span>Activity</span> 
           </a> 
         </li>
-		<li class="@if(Request::is('post*')){{'active'}}@endif">
+    <li class="@if(Request::is('post*')){{'active'}}@endif">
           <a href="{{URL::action('PostingController@getIndex')}}">
             <i class="icon-paste"></i><span>Post</span> 
           </a> 
         </li>
-		<li class="@if(Request::is('donation*')){{'active'}}@endif">
+    <li class="@if(Request::is('donation*')){{'active'}}@endif">
           <a href="{{URL::action('DonationController@getIndex')}}">
             <i class="icon-money"></i><span>Donation</span> 
           </a> 
@@ -134,22 +134,35 @@
 <!-- Le javascript
 ================================================== --> 
 <!-- Placed at the end of the document so the pages load faster --> 
-<script src="{{asset('assets/js/jquery-1.7.2.min.js')}}"></script> 
+<script src="{{asset('assets/js/jquery-1.11.2.min.js')}}"></script> 
 <script src="{{asset('assets/js/excanvas.min.js')}}"></script> 
 <script src="{{asset('assets/js/chart.min.js')}}" type="text/javascript"></script> 
 <script src="{{asset('bootstrap/js/bootstrap.min.js')}}"></script>
 <script src="{{asset('assets/js/angular.min.js')}}"></script>
 <script src="{{asset('assets/js/module/app.js')}}"></script>
 <script src="{{asset('assets/js/ui-bootstrap-tpls-0.12.0.min.js')}}"></script>
+<script src="{{asset('assets/js/bootbox.min.js')}}"></script>
 
 
 @yield('scripts')
+<script>
 
+      $(document).ready(function () {
+          $('.btn-danger').click(function(e) {
+              var button = $(this);
+              bootbox.confirm("Are you sure?", function(result) {
+                 if(result) {window.location.href = button.attr('href');}
+               }); 
+            e.preventDefault();
+          });
+
+      });
+  </script>
 <script src="{{asset('assets/js/base.js')}}"></script> 
 <script type="text/javascript">
-	$(function () {
-	  $('[data-toggle="tooltip"]').tooltip();
-	})
+  $(function () {
+    $('[data-toggle="tooltip"]').tooltip();
+  })
 </script> 
 </body>
 </html>

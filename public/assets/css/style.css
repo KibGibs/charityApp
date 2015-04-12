@@ -1277,7 +1277,7 @@ color: #333;
 	background-color: #C0D8C0 !important;
 }
 
-
+.modal-backdrop { display:none !important;}
 /*------------------------------------------------------------------
 [2. Max Width: 1200px]
 */
