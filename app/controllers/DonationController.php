@@ -12,6 +12,8 @@ class DonationController extends BaseController {
 		
 		foreach($donation as $k=>$v) {
 			$v->user = User::find($v->user_id);
+			$v->program = $v->program_id ? Program::find($v->program_id)->name : null;
+			$v->activity = $v->activity_id ? Activity::find($v->activity_id)->name : null;
 		}
 		
 		$data = array(

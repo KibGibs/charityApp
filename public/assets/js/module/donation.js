@@ -23,6 +23,7 @@ var app = angular.module('app')
 			 	$scope.error = true;
 			 }else{
 			 	$scope.success = true;
+			 	$scope.donate = [];
 			 }
 		});
 		console.log(params);

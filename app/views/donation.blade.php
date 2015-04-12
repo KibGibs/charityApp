@@ -24,6 +24,8 @@
 					<tr>
 						<th> ID </th>
 						<th> Donor </th>
+						<th> Program </th>
+						<th> Activity </th>
 						<th> Amount </th>
 						<th> Date </th>
 						<th> Paypal Transaction ID </th>
@@ -37,6 +39,8 @@
 						<tr>
 							<td class="span2"> {{$v->id}} </td>
 							<td class="span2"> {{$v->user->first_name}} {{$v->user->last_name}}</td>
+							<td class="span2"> {{$v->program}} </td>
+							<td class="span2"> {{$v->activity}} </td>
 							<td class="span2">PHP {{number_format($v->donated_amount,2)}} </td>
 							<td class="span2"> {{$v->donation_date}} </td>
 							<td class="span2"> {{$v->paypal_transaction_id}} </td>
