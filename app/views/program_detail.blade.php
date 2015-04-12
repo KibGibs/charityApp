@@ -19,11 +19,11 @@
 	  	</div> <!-- /widget-header -->
 		
 		<div class="widget-content">
-		<div class="progress">
-		  <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="1" aria-valuemin="0" aria-valuemax="100" style="width: {{$percent}}%">
-		    <span class="sr-only">{{$percent}}%</span>
-		  </div>
-		</div>
+		<div class="progress progress-striped active">
+          <div class="bar" style="width: {{$percent}}%;">
+          		 <span class="sr-only">{{$percent}}%</span>
+          </div>
+        </div>
 		<table class="table table-striped table-bordered">
 			<thead>
 				<tr>
