@@ -3,7 +3,6 @@
 @section('content')
 <div class="container">
  <a href="{{ URL::action('DonationController@donate') }}" role="button" class="btn btn-primary">DONATE</a>
- <a href="{{ URL::action('DonationController@donateViaPaypal') }}" role="button" class="btn btn-primary">DONATE via PayPal</a>
 
 
 	<br /><br />
@@ -54,7 +53,8 @@
 																
 								@endif
 							</td>
-							<td class="td-actions span2">
+							<td class="td-actions span5">
+								<a href="{{URL::action('DonationController@paypalDonate', ['donate' => $v->id])}}" class="btn btn-small btn-success" data-toggle="tooltip" data-placement="top" title="Donate via PayPal">Donate via PayPal</a>
 								<a href="{{URL::action('DonationController@donationDetail', ['donate' => $v->id])}}" class="btn btn-small btn-info"><i class="btn-icon-only icon-list-alt" data-toggle="tooltip" data-placement="top" title="Donation Details"> </i></a>
 								@if(!Auth::user()->isDonor())
 									@if($v->status == 0)
